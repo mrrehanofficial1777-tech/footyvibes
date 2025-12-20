@@ -3,22 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Pro | Interactive Football Hub</title>
+    <title>FootyVibes Ultra | Official Hub</title>
     <style>
-        body { background-color: #050505; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
-        .navbar { background: #ff0000; padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; font-weight: bold; }
-        .navbar a { color: white; text-decoration: none; font-size: 13px; text-transform: uppercase; }
-        .ticker { background: #222; color: #f1c40f; padding: 10px; font-weight: bold; overflow: hidden; white-space: nowrap; border-bottom: 2px solid #ff0000; }
-        .hero { padding: 40px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000'); background-size: cover; }
-        .section-title { color: #f1c40f; font-size: 22px; margin: 25px 0 10px; text-transform: uppercase; }
-        .card { background: #121212; margin: 15px auto; padding: 15px; border-radius: 20px; width: 92%; max-width: 500px; border: 1px solid #333; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
-        .video-wrapper { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 15px; }
+        :root { --primary: #ff0000; --dark: #050505; --card-bg: #121212; --accent: #f1c40f; }
+        body { background-color: var(--dark); color: white; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0; text-align: center; scroll-behavior: smooth; }
+        
+        /* Premium Navbar */
+        .navbar { background: var(--primary); padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; box-shadow: 0 4px 15px rgba(255,0,0,0.3); }
+        .navbar a { color: white; text-decoration: none; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* News Ticker */
+        .ticker { background: #1a1a1a; color: var(--accent); padding: 10px; font-size: 14px; border-bottom: 2px solid var(--primary); font-weight: bold; }
+
+        /* Hero Section */
+        .hero { padding: 60px 20px; background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000'); background-size: cover; background-position: center; border-bottom: 5px solid var(--primary); }
+        
+        /* Cards & Sections */
+        .card { background: var(--card-bg); margin: 20px auto; padding: 20px; border-radius: 20px; width: 90%; max-width: 500px; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { border-color: var(--primary); box-shadow: 0 0 20px rgba(255,0,0,0.2); }
+        .section-title { color: var(--accent); font-size: 22px; margin-bottom: 15px; text-transform: uppercase; font-weight: 800; }
+
+        /* Buttons */
+        .btn { display: inline-block; padding: 12px 20px; margin: 5px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; font-size: 13px; transition: 0.3s; border: none; cursor: pointer; }
+        .btn-yt { background: var(--primary); width: 80%; }
+        .btn-share { background: #25d366; width: 80%; }
+        .league-btn { background: #333; font-size: 11px; padding: 10px; }
+
+        /* Video Gallery */
+        .video-wrapper { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .league-btn { display: inline-block; padding: 10px 15px; margin: 5px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 12px; }
-        .poll-btn { background: #333; color: white; border: 1px solid #ff0000; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; width: 80%; transition: 0.3s; }
-        .poll-btn:hover { background: #ff0000; }
-        input[type="text"] { width: 70%; padding: 10px; border-radius: 5px; border: none; outline: none; margin-bottom: 10px; }
-        footer { padding: 30px; color: #666; font-size: 12px; }
+
+        /* Sub Counter Style */
+        .sub-count { font-size: 28px; color: var(--primary); font-weight: bold; margin: 10px 0; }
+        
+        footer { padding: 50px; background: #000; color: #555; font-size: 11px; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -26,17 +44,24 @@
     <div class="navbar">
         <a href="#">Home</a>
         <a href="#scores">Scores</a>
-        <a href="#poll">Voting</a>
+        <a href="#news">News</a>
         <a href="#videos">Shorts</a>
     </div>
 
     <div class="ticker">
-        <marquee>🔥 Today's Big Match: Real Madrid vs Man City | ⚽ Vote for your Winner below! | 🏆 Latest Transfer Updates | 📺 New Shorts Uploaded!</marquee>
+        <marquee>⚽ LIVE: Transfer Market is Open! | 🏆 UCL Draw Updates | 🔥 New Video: Best Goals of the Week | 🗳️ Vote for your favorite player below!</marquee>
     </div>
 
     <div class="hero">
-        <h1 style="margin:0;">⚽ FOOTY VIBES</h1>
-        <p>Your Interactive Football Hub</p>
+        <h1 style="margin:0; font-size: 36px; letter-spacing: 2px;">FOOTY VIBES</h1>
+        <p style="color: #aaa; margin-top: 10px;">The Ultimate Football Destination</p>
+    </div>
+
+    <div class="card">
+        <h2 class="section-title">📊 Channel Growth</h2>
+        <div class="sub-count">1,000+</div>
+        <p style="font-size: 12px; color: #888;">Real-time Football Fans</p>
+        <a href="https://youtube.com/@mrrehanofficial1777" target="_blank" class="btn btn-yt">SUBSCRIBE NOW</a>
     </div>
 
     <div class="card" id="scores">
@@ -45,29 +70,20 @@
         <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
     </div>
 
-    <div class="card" id="poll">
-        <h2 class="section-title">🗳️ Match Prediction</h2>
-        <p style="color: #bbb;">Who will win today's Big Match?</p>
-        <button class="poll-btn" onclick="alert('Thanks for voting for Home Team!')">🏠 Home Team Wins</button>
-        <button class="poll-btn" onclick="alert('Thanks for voting for Draw!')">🤝 Match Draw</button>
-        <button class="poll-btn" onclick="alert('Thanks for voting for Away Team!')">🏃 Away Team Wins</button>
-    </div>
-
-    <div class="card" id="leagues">
-        <h2 class="section-title">📊 Tap to see Table</h2>
-        <div style="padding: 10px;">
-            <a href="https://www.google.com/search?q=premier+league+table" target="_blank" class="league-btn" style="background: #3d195d;">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a>
-            <a href="https://www.google.com/search?q=la+liga+table" target="_blank" class="league-btn" style="background: #ee8707;">🇪🇸 La Liga</a>
-            <a href="https://www.google.com/search?q=isl+table+2025" target="_blank" class="league-btn" style="background: #003366;">🇮🇳 ISL</a>
+    <div class="card" id="news">
+        <h2 class="section-title">🗞️ Football News</h2>
+        <div style="height: 200px; overflow-y: scroll; text-align: left; font-size: 14px; padding: 10px; background: #000; border-radius: 10px; color: #ccc;">
+            <p>• <b>Breaking:</b> Manchester City vs Arsenal match updates...</p>
+            <p>• <b>Transfer:</b> Liverpool scouting new midfielders...</p>
+            <p>• <b>Injury:</b> Top striker out for 3 weeks...</p>
+            <p>• <b>UCL:</b> Quarter-final matches announced...</p>
         </div>
     </div>
 
     <div class="card">
-        <h2 class="section-title">🔍 Search Player Stats</h2>
-        <form action="https://www.google.com/search" method="get" target="_blank">
-            <input type="text" name="q" placeholder="Example: Messi stats 2025">
-            <button type="submit" style="padding: 10px; background: #ff0000; border: none; color: white; border-radius: 5px; cursor: pointer;">Search</button>
-        </form>
+        <h2 class="section-title">📲 Share Website</h2>
+        <p style="font-size: 12px; color: #888;">Share this site with your football friends!</p>
+        <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20awesome%20Football%20site:%20https://mrrehanofficial1777-tech.github.io/footyvibes/" class="btn btn-share">SHARE ON WHATSAPP</a>
     </div>
 
     <h2 class="section-title" id="videos">🔥 Latest Shorts</h2>
@@ -79,7 +95,10 @@
     <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5aEt5xcQUqA" allowfullscreen></iframe></div></div>
     <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" allowfullscreen></iframe></div></div>
 
-    <footer>&copy; 2025 FootyVibes Tech</footer>
+    <footer>
+        <p>&copy; 2025 FootyVibes Tech | mrrehanofficial1777-tech</p>
+        <p>Built for Football Fans</p>
+    </footer>
 
 </body>
 </html>
