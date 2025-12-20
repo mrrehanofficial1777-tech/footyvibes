@@ -3,85 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Pro | Live News Hub</title>
+    <title>FootyVibes Pro</title>
     <style>
-        :root { --primary: #ff0000; --dark: #050505; --accent: #f1c40f; --card: #121212; --blue: #00e5ff; }
-        body { background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
-        
-        .navbar { background: var(--primary); padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; font-weight: bold; }
-        .navbar a { color: white; text-decoration: none; font-size: 11px; text-transform: uppercase; }
-
-        /* NEW: Live News Ticker Style */
-        .ticker-wrap { background: #1a1a1a; padding: 10px 0; border-bottom: 2px solid var(--primary); white-space: nowrap; overflow: hidden; position: relative; }
-        .ticker-content { display: inline-block; animation: ticker 25s linear infinite; color: var(--accent); font-weight: bold; font-size: 14px; }
-        .ticker-content span { margin-right: 50px; }
-        @keyframes ticker { 
-            0% { transform: translateX(100%); } 
-            100% { transform: translateX(-100%); } 
-        }
-
-        .search-container { background: #0a0a0a; padding: 20px; border-bottom: 1px solid #333; }
-        .search-box { display: flex; max-width: 400px; margin: 0 auto; gap: 5px; }
-        .search-box input { flex: 1; padding: 12px; border-radius: 5px; border: 1px solid #333; background: #000; color: white; outline: none; }
-        .search-box button { background: var(--primary); border: none; padding: 10px 15px; border-radius: 5px; color: white; cursor: pointer; font-weight: bold; }
-
-        .card { background: var(--card); margin: 15px auto; padding: 20px; border-radius: 20px; width: 90%; max-width: 500px; border: 1px solid #333; overflow: hidden; }
-        .section-title { color: var(--accent); font-size: 18px; margin-bottom: 15px; text-transform: uppercase; font-weight: bold; }
-
-        .player-card { background: linear-gradient(135deg, #1a1a1a 0%, #000 100%); border: 2px solid var(--blue); text-align: left; padding: 0; position: relative; }
-        .player-img { width: 100%; height: 230px; object-fit: cover; }
-        .badge { position: absolute; top: 10px; right: 10px; background: var(--blue); color: black; padding: 4px 8px; font-weight: bold; border-radius: 4px; font-size: 10px; }
-
-        .video-wrapper { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 15px; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        :root { --primary: #ff0000; --dark: #050505; --accent: #f1c40f; --blue: #00e5ff; }
+        body { background-color: var(--dark); color: white; font-family: sans-serif; margin: 0; padding: 0; text-align: center; }
+        .navbar { background: var(--primary); padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; }
+        .navbar a { color: white; text-decoration: none; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .card { background: #121212; margin: 15px auto; padding: 0; border-radius: 20px; width: 90%; max-width: 450px; border: 1px solid #333; overflow: hidden; }
+        .player-img { width: 100%; height: auto; display: block; border-bottom: 2px solid var(--blue); }
+        .player-info { padding: 15px; text-align: left; }
+        .section-title { color: var(--accent); font-size: 18px; margin: 20px 0; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#scores">Live Scores</a>
-        <a href="#search">Search Player</a>
-        <a href="#videos">Videos</a>
+        <a href="#">HOME</a>
+        <a href="#scores">LIVE SCORES</a>
+        <a href="#videos">VIDEOS</a>
     </div>
 
-    <div class="ticker-wrap">
-        <div class="ticker-content">
-            <span>🔥 TRANSFER NEWS: Mbappe training at Madrid!</span>
-            <span>⚽ GOAL ALERT: Haaland scores hat-trick in PL!</span>
-            <span>🏆 UCL: Draw for Quarter-Finals tonight at 10 PM!</span>
-            <span>🇮🇳 ISL: New record attendance in Kolkata Derby!</span>
-            <span>✨ Ballon d'Or: Top 3 candidates leaked!</span>
-        </div>
-    </div>
-
-    <div class="search-container" id="search">
-        <form action="https://www.google.com/search" method="GET" target="_blank" class="search-box">
-            <input type="text" name="q" placeholder="Search Player Stats (e.g. Messi)...">
-            <input type="hidden" name="as_q" value="football records 2025">
-            <button type="submit">SEARCH</button>
-        </form>
-    </div>
-
-    <div class="card player-card">
-        <div class="badge">MVP OF THE MONTH</div>
-        <img src="https://images.unsplash.com/photo-1640101416413-41f879262963?q=80&w=1000" class="player-img">
-        <div style="padding: 15px;">
+    <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR07fW_vS1yY_282v_H4P-uN605QWc9V_f54A&s" class="player-img" alt="Haaland">
+        <div class="player-info">
             <h2 style="margin:0; font-size: 22px;">Erling Haaland</h2>
-            <p style="color: var(--blue); font-size: 12px; margin: 5px 0;">Club: Man City | Nationality: Norway</p>
+            <p style="color: var(--blue); font-size: 14px; margin: 5px 0;">Manchester City | MVP of the Month</p>
         </div>
     </div>
 
-    <div class="card" id="scores">
-        <h2 class="section-title">🏆 Live Matches</h2>
+    <div class="card" id="scores" style="padding: 15px;">
+        <h2 class="section-title">🏆 LIVE MATCHES</h2>
         <div id="fs-viewer-mount"></div>
         <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
     </div>
 
-    <h2 class="section-title">📺 Trending Football Shorts</h2>
-    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eotPLIjZlnY" allowfullscreen></iframe></div></div>
-
-    <footer style="padding: 20px; color: #444; font-size: 10px;">&copy; 2025 FootyVibes Tech | Rehan Official</footer>
+    <footer style="padding: 20px; color: #444; font-size: 10px;">&copy; 2025 FootyVibes Tech</footer>
 
 </body>
 </html>
