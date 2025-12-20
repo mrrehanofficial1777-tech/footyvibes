@@ -3,80 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Pro | Live Countdown</title>
+    <title>FootyVibes Super App | Rehan Official</title>
     <style>
-        :root { --primary: #ff0000; --dark: #050505; --accent: #f1c40f; --text: white; --card-bg: #121212; --blue: #00e5ff; }
-        .gold-mode { --primary: #ffd700; --dark: #1a1a00; --accent: #ffffff; --text: #ffd700; --card-bg: #222200; }
+        :root { --primary: #ff0000; --dark: #050505; --accent: #f1c40f; --card: #121212; --blue: #00e5ff; }
+        body { background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
         
-        body { background-color: var(--dark); color: var(--text); font-family: sans-serif; margin: 0; padding: 0; text-align: center; transition: 0.5s; }
-        .navbar { background: var(--primary); padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; }
-        .navbar a { color: black; text-decoration: none; font-size: 11px; font-weight: bold; }
+        /* Navbar with many options */
+        .navbar { background: var(--primary); padding: 12px; position: sticky; top: 0; z-index: 1000; display: flex; overflow-x: auto; gap: 15px; border-bottom: 2px solid var(--accent); }
+        .navbar a { color: white; text-decoration: none; font-size: 10px; font-weight: bold; white-space: nowrap; text-transform: uppercase; }
 
-        .theme-btn { background: var(--accent); color: black; border: none; padding: 10px 20px; border-radius: 50px; font-weight: bold; margin: 15px; cursor: pointer; }
+        /* Ticker for Breaking News */
+        .news-ticker { background: #222; padding: 8px; font-size: 12px; color: var(--accent); border-bottom: 1px solid #333; }
 
-        .card { background: var(--card-bg); margin: 15px auto; padding: 20px; border-radius: 20px; width: 90%; max-width: 450px; border: 1px solid #333; }
+        .card { background: var(--card); margin: 15px auto; padding: 20px; border-radius: 15px; width: 92%; max-width: 500px; border: 1px solid #222; text-align: left; }
+        .section-title { color: var(--accent); font-size: 16px; margin-bottom: 15px; border-left: 4px solid var(--primary); padding-left: 10px; text-transform: uppercase; }
 
-        /* Countdown Timer Styles */
-        .timer-display { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
-        .time-box { background: #222; padding: 10px; border-radius: 10px; min-width: 60px; border: 1px solid var(--blue); }
-        .time-num { display: block; font-size: 22px; font-weight: bold; color: var(--blue); }
-        .time-lbl { font-size: 10px; text-transform: uppercase; color: #888; }
-        
-        .insta-btn { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; padding: 10px 15px; border-radius: 50px; text-decoration: none; font-size: 12px; z-index: 999; border: 2px solid white; }
+        /* Commentary Box */
+        .commentary { background: #000; padding: 10px; border-radius: 10px; height: 100px; overflow-y: scroll; font-size: 12px; border: 1px solid #333; }
+        .comm-time { color: var(--primary); font-weight: bold; margin-right: 10px; }
+
+        /* Points Table */
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th { text-align: left; color: #888; border-bottom: 1px solid #333; padding: 5px; }
+        td { padding: 8px 5px; border-bottom: 1px solid #222; }
+
+        .insta-float { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; z-index: 1000; border: 2px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-        <a href="#">HOME</a>
-        <a href="#timer">COUNTDOWN</a>
-        <a href="#scores">LIVE</a>
+        <a href="#">🏠 Home</a>
+        <a href="#scores">⚽ Scores</a>
+        <a href="#table">📊 Table</a>
+        <a href="#news">📰 News</a>
+        <a href="#transfer">✈️ Transfers</a>
+        <a href="#quiz">🧠 Quiz</a>
+        <a href="https://youtube.com/@mrrehanofficial1777">📺 Shorts</a>
     </div>
 
-    <button class="theme-btn" onclick="toggleTheme()">✨ SWITCH THEME</button>
+    <marquee class="news-ticker">🚨 TRANSFER ALERT: PSG interested in Lamine Yamal! | 🏆 UCL: Final Countdown begins! | ⚽ PL: Manchester City win 4-0!</marquee>
 
-    <a href="https://www.instagram.com/mr7.933?igsh=MXRlYW0xem1haXE3Zg==" target="_blank" class="insta-btn">📸 Instagram</a>
-
-    <div class="card" id="timer">
-        <h3 style="color: var(--blue); margin-top: 0;">🏆 UCL FINAL COUNTDOWN</h3>
-        <p style="font-size: 13px; color: #aaa;">Time left until the biggest match:</p>
-        <div class="timer-display">
-            <div class="time-box"><span class="time-num" id="days">00</span><span class="time-lbl">Days</span></div>
-            <div class="time-box"><span class="time-num" id="hours">00</span><span class="time-lbl">Hrs</span></div>
-            <div class="time-box"><span class="time-num" id="mins">00</span><span class="time-lbl">Mins</span></div>
-            <div class="time-box"><span class="time-num" id="secs">00</span><span class="time-lbl">Secs</span></div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3 style="color: var(--accent);">🧠 FOOTBALL QUIZ</h3>
-        <p>Who has the most Ballon d'Or awards?</p>
-        <button style="width:100%; padding:10px; margin:5px 0; background:#222; color:white; border-radius:8px;" onclick="alert('Correct! 🐐')">Lionel Messi</button>
-        <button style="width:100%; padding:10px; margin:5px 0; background:#222; color:white; border-radius:8px;" onclick="alert('Wrong! Try again.')">C. Ronaldo</button>
-    </div>
+    <a href="https://www.instagram.com/mr7.933?igsh=MXRlYW0xem1haXE3Zg==" target="_blank" class="insta-float">Follow Me 📸</a>
 
     <div class="card" id="scores">
-        <h3 style="color: var(--accent);">🏆 LIVE MATCHES</h3>
+        <h2 class="section-title">Live Scoreboard</h2>
         <div id="fs-viewer-mount"></div>
         <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
     </div>
 
-    <script>
-        function toggleTheme() { document.body.classList.toggle('gold-mode'); }
+    <div class="card">
+        <h2 class="section-title">Match Commentary</h2>
+        <div class="commentary">
+            <p><span class="comm-time">85'</span> GOAL! Erling Haaland strikes again with a powerful header!</p>
+            <p><span class="comm-time">78'</span> Yellow Card: Rodri commits a tactical foul in midfield.</p>
+            <p><span class="comm-time">60'</span> Substitutions: De Bruyne comes on for Bernardo Silva.</p>
+            <p><span class="comm-time">45'</span> Half Time: Both teams heading to the tunnel. 0-0.</p>
+        </div>
+    </div>
 
-        // COUNTDOWN SCRIPT
-        const countDownDate = new Date("May 31, 2026 21:00:00").getTime();
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
-            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("mins").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("secs").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
-        }, 1000);
-    </script>
+    <div class="card" id="table">
+        <h2 class="section-title">Premier League Table</h2>
+        <table>
+            <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>Pts</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td><b>Man City</b></td><td>18</td><td><b>42</b></td></tr>
+                <tr><td>2</td><td><b>Liverpool</b></td><td>18</td><td><b>40</b></td></tr>
+                <tr><td>3</td><td><b>Arsenal</b></td><td>18</td><td><b>38</b></td></tr>
+                <tr><td>4</td><td><b>Chelsea</b></td><td>18</td><td><b>35</b></td></tr>
+            </tbody>
+        </table>
+    </div>
 
-    <footer style="padding: 20px; color: #555; font-size: 10px;">&copy; 2025 FootyVibes Tech</footer>
+    <div id="news" style="padding-bottom: 50px;">
+        <h2 class="section-title" style="margin-left: 20px;">Top Stories</h2>
+        <div class="card" style="margin-top: 5px;">
+            <p style="margin:0; font-weight: bold;">Mbappe reveals his dream for 2026 World Cup.</p>
+            <small style="color: #666;">2 mins ago</small>
+        </div>
+        <div class="card" style="margin-top: 5px;">
+            <p style="margin:0; font-weight: bold;">Is Lionel Messi returning to Barcelona for a farewell?</p>
+            <small style="color: #666;">1 hour ago</small>
+        </div>
+    </div>
+
+    <footer style="padding: 30px; background: #000; font-size: 10px; color: #444;">&copy; 2025 FootyVibes Tech | Created by Rehan</footer>
 
 </body>
 </html>
