@@ -3,68 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Pro | Ultimate Fan Hub</title>
+    <title>FootyVibes Pro | Live Countdown</title>
     <style>
-        :root { --primary: #ff0000; --dark: #050505; --accent: #f1c40f; --blue: #00e5ff; --green: #2ecc71; }
-        body { background-color: var(--dark); color: white; font-family: sans-serif; margin: 0; padding: 0; text-align: center; overflow-x: hidden; }
+        :root { --primary: #ff0000; --dark: #050505; --accent: #f1c40f; --text: white; --card-bg: #121212; --blue: #00e5ff; }
+        .gold-mode { --primary: #ffd700; --dark: #1a1a00; --accent: #ffffff; --text: #ffd700; --card-bg: #222200; }
         
+        body { background-color: var(--dark); color: var(--text); font-family: sans-serif; margin: 0; padding: 0; text-align: center; transition: 0.5s; }
         .navbar { background: var(--primary); padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; }
-        .navbar a { color: white; text-decoration: none; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .navbar a { color: black; text-decoration: none; font-size: 11px; font-weight: bold; }
 
-        .transfer-ticker { background: #001a33; border-bottom: 2px solid var(--blue); padding: 10px 0; overflow: hidden; white-space: nowrap; }
-        .transfer-text { display: inline-block; animation: scroll-news 20s linear infinite; color: var(--blue); font-weight: bold; font-size: 13px; }
-        @keyframes scroll-news { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+        .theme-btn { background: var(--accent); color: black; border: none; padding: 10px 20px; border-radius: 50px; font-weight: bold; margin: 15px; cursor: pointer; }
 
-        /* NEW: Prediction Card Style */
-        .predict-card { background: #111; margin: 20px auto; width: 90%; max-width: 450px; border-radius: 20px; border: 1.5px dashed var(--green); padding: 20px; }
-        .predict-input { background: #000; border: 1px solid #333; color: white; width: 40px; text-align: center; padding: 8px; border-radius: 5px; font-weight: bold; font-size: 18px; }
-        .predict-btn { background: var(--green); color: black; border: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; margin-top: 15px; cursor: pointer; }
+        .card { background: var(--card-bg); margin: 15px auto; padding: 20px; border-radius: 20px; width: 90%; max-width: 450px; border: 1px solid #333; }
 
-        .battle-card { background: linear-gradient(to bottom, #1a1a1a, #000); margin: 20px auto; width: 95%; max-width: 450px; border-radius: 20px; border: 2px solid var(--accent); overflow: hidden; }
-        .insta-btn { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; padding: 10px 15px; border-radius: 50px; text-decoration: none; font-size: 12px; font-weight: bold; z-index: 999; border: 2px solid white; }
+        /* Countdown Timer Styles */
+        .timer-display { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        .time-box { background: #222; padding: 10px; border-radius: 10px; min-width: 60px; border: 1px solid var(--blue); }
+        .time-num { display: block; font-size: 22px; font-weight: bold; color: var(--blue); }
+        .time-lbl { font-size: 10px; text-transform: uppercase; color: #888; }
+        
+        .insta-btn { position: fixed; bottom: 20px; right: 20px; background: #e1306c; color: white; padding: 10px 15px; border-radius: 50px; text-decoration: none; font-size: 12px; z-index: 999; border: 2px solid white; }
     </style>
 </head>
 <body>
 
     <div class="navbar">
         <a href="#">HOME</a>
-        <a href="#predict">PREDICT</a>
+        <a href="#timer">COUNTDOWN</a>
         <a href="#scores">LIVE</a>
     </div>
 
-    <div class="transfer-ticker">
-        <div class="transfer-text">
-            <span>🚨 BREAKING: Haaland to extend contract?</span> <span>🔥 RUMOR: Salah Saudi Move!</span> <span>⏳ NEWS: Rodri back in training!</span>
-        </div>
-    </div>
+    <button class="theme-btn" onclick="toggleTheme()">✨ SWITCH THEME</button>
 
     <a href="https://www.instagram.com/mr7.933?igsh=MXRlYW0xem1haXE3Zg==" target="_blank" class="insta-btn">📸 Instagram</a>
 
-    <div class="predict-card" id="predict">
-        <h3 style="color: var(--green); margin-top: 0;">🔮 SCORE PREDICTOR</h3>
-        <p style="font-size: 12px; color: #888;">Predict tonight's big match result!</p>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin: 15px 0;">
-            <div><p style="margin: 5px 0; font-size: 14px;">MCI</p><input type="number" class="predict-input" value="0"></div>
-            <div style="font-size: 20px; font-weight: bold; margin-top: 20px;">-</div>
-            <div><p style="margin: 5px 0; font-size: 14px;">LIV</p><input type="number" class="predict-input" value="0"></div>
-        </div>
-        <button class="predict-btn" onclick="alert('Prediction Saved! Good Luck 🍀')">SUBMIT PREDICTION</button>
-    </div>
-
-    <div class="battle-card">
-        <div style="background: var(--accent); color: black; padding: 10px; font-weight: bold;">⚡ GOAT VOTE ⚡</div>
-        <div style="display: flex; justify-content: space-around; padding: 20px;">
-            <p>Messi 🐐</p> <p>vs</p> <p>Ronaldo 🇵🇹</p>
+    <div class="card" id="timer">
+        <h3 style="color: var(--blue); margin-top: 0;">🏆 UCL FINAL COUNTDOWN</h3>
+        <p style="font-size: 13px; color: #aaa;">Time left until the biggest match:</p>
+        <div class="timer-display">
+            <div class="time-box"><span class="time-num" id="days">00</span><span class="time-lbl">Days</span></div>
+            <div class="time-box"><span class="time-num" id="hours">00</span><span class="time-lbl">Hrs</span></div>
+            <div class="time-box"><span class="time-num" id="mins">00</span><span class="time-lbl">Mins</span></div>
+            <div class="time-box"><span class="time-num" id="secs">00</span><span class="time-lbl">Secs</span></div>
         </div>
     </div>
 
-    <div style="background: #121212; margin: 15px auto; padding: 15px; border-radius: 20px; width: 90%; max-width: 450px;" id="scores">
-        <h3 style="color: var(--accent);">🏆 LIVE MATCH UPDATES</h3>
+    <div class="card">
+        <h3 style="color: var(--accent);">🧠 FOOTBALL QUIZ</h3>
+        <p>Who has the most Ballon d'Or awards?</p>
+        <button style="width:100%; padding:10px; margin:5px 0; background:#222; color:white; border-radius:8px;" onclick="alert('Correct! 🐐')">Lionel Messi</button>
+        <button style="width:100%; padding:10px; margin:5px 0; background:#222; color:white; border-radius:8px;" onclick="alert('Wrong! Try again.')">C. Ronaldo</button>
+    </div>
+
+    <div class="card" id="scores">
+        <h3 style="color: var(--accent);">🏆 LIVE MATCHES</h3>
         <div id="fs-viewer-mount"></div>
         <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
     </div>
 
-    <footer style="padding: 30px; color: #444; font-size: 10px;">&copy; 2025 FootyVibes Official</footer>
+    <script>
+        function toggleTheme() { document.body.classList.toggle('gold-mode'); }
+
+        // COUNTDOWN SCRIPT
+        const countDownDate = new Date("May 31, 2026 21:00:00").getTime();
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("mins").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("secs").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+        }, 1000);
+    </script>
+
+    <footer style="padding: 20px; color: #555; font-size: 10px;">&copy; 2025 FootyVibes Tech</footer>
 
 </body>
 </html>
