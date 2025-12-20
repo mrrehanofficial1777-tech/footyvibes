@@ -6,18 +6,17 @@
     <title>FootyVibes Official | Live Scores & Highlights</title>
     <style>
         body { background-color: #050505; color: white; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; text-align: center; }
-        .navbar { background: #ff0000; padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 20px; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .navbar { background: #ff0000; padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 20px; font-weight: bold; }
         .navbar a { color: white; text-decoration: none; font-size: 14px; text-transform: uppercase; }
-        .hero { padding: 50px 20px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000'); background-size: cover; border-bottom: 4px solid #ff0000; }
-        .section-title { color: #f1c40f; font-size: 24px; margin: 30px 0 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero { padding: 50px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000'); background-size: cover; border-bottom: 4px solid #ff0000; }
+        .section-title { color: #f1c40f; font-size: 24px; margin: 30px 0 10px; text-transform: uppercase; }
         .card { background: #121212; margin: 20px auto; padding: 15px; border-radius: 20px; width: 92%; max-width: 500px; border: 1px solid #333; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
         .video-wrapper { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 15px; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .social-links { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
-        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 14px; display: inline-block; margin: 10px; }
         .yt { background: #ff0000; }
-        .tg { background: #0088cc; }
-        footer { padding: 40px; color: #666; font-size: 13px; border-top: 1px solid #222; }
+        .promo { background: #27ae60; }
+        footer { padding: 40px; color: #666; font-size: 13px; }
     </style>
 </head>
 <body>
@@ -29,8 +28,8 @@
     </div>
 
     <div class="hero">
-        <h1 style="margin:0; font-size: 32px;">⚽ FOOTY VIBES</h1>
-        <p style="color: #ccc;">Ultimate Football Highlights & Live Updates</p>
+        <h1 style="margin:0;">⚽ FOOTY VIBES</h1>
+        <p>Official Football Channel Website</p>
     </div>
 
     <div class="card" id="scores">
@@ -41,54 +40,21 @@
 
     <h2 class="section-title" id="videos">🔥 Latest Football Shorts</h2>
 
-    <div class="card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/eotPLIjZlnY" allowfullscreen></iframe>
-        </div>
-    </div>
+    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eotPLIjZlnY" allowfullscreen></iframe></div></div>
+    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LnkqvVZvmTs" allowfullscreen></iframe></div></div>
+    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/FpOjjedgSX8" allowfullscreen></iframe></div></div>
+    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/dhHDJXNDwHg" allowfullscreen></iframe></div></div>
+    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5aEt5xcQUqA" allowfullscreen></iframe></div></div>
+    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" allowfullscreen></iframe></div></div>
 
     <div class="card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/LnkqvVZvmTs" allowfullscreen></iframe>
-        </div>
+        <h2 class="section-title">📢 Official Contact</h2>
+        <p>For Business & Promotions, Contact Us:</p>
+        <a href="https://youtube.com/@mrrehanofficial1777" class="btn yt">Visit YouTube</a>
+        <a href="mailto:contact@footyvibes.com" class="btn promo">Work with Us</a>
     </div>
 
-    <div class="card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/FpOjjedgSX8" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/dhHDJXNDwHg" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/5aEt5xcQUqA" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="card">
-        <h2 class="section-title">Join the Community</h2>
-        <div class="social-links">
-            <a href="https://youtube.com/@mrrehanofficial1777" class="btn yt">Subscribe YouTube</a>
-            <a href="#" class="btn tg">Join Telegram</a>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2025 FootyVibes Tech | All Rights Reserved.<br>
-        Developed by mrrehanofficial1777-tech
-    </footer>
+    <footer>&copy; 2025 FootyVibes Tech | mrrehanofficial1777-tech</footer>
 
 </body>
 </html>
