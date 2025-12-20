@@ -3,33 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Official | Live Scores & Highlights</title>
+    <title>FootyVibes Official</title>
     <style>
-        body { background-color: #050505; color: white; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; text-align: center; }
+        body { background-color: #050505; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
         .navbar { background: #ff0000; padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 20px; font-weight: bold; }
         .navbar a { color: white; text-decoration: none; font-size: 14px; text-transform: uppercase; }
-        .hero { padding: 50px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000'); background-size: cover; border-bottom: 4px solid #ff0000; }
-        .section-title { color: #f1c40f; font-size: 24px; margin: 30px 0 10px; text-transform: uppercase; }
-        .card { background: #121212; margin: 20px auto; padding: 15px; border-radius: 20px; width: 92%; max-width: 500px; border: 1px solid #333; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
+        .ticker { background: #222; color: #f1c40f; padding: 10px; font-weight: bold; overflow: hidden; white-space: nowrap; border-bottom: 2px solid #ff0000; }
+        .hero { padding: 40px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000'); background-size: cover; }
+        .section-title { color: #f1c40f; font-size: 22px; margin: 25px 0 10px; text-transform: uppercase; }
+        .card { background: #121212; margin: 15px auto; padding: 15px; border-radius: 20px; width: 92%; max-width: 500px; border: 1px solid #333; box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
         .video-wrapper { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 15px; background: #000; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 14px; display: inline-block; margin: 10px; }
-        .yt { background: #ff0000; }
-        .promo { background: #27ae60; }
-        footer { padding: 40px; color: #666; font-size: 13px; }
+        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; font-size: 14px; display: inline-block; margin: 10px; background: #ff0000; }
+        footer { padding: 30px; color: #666; font-size: 12px; }
     </style>
 </head>
 <body>
 
     <div class="navbar">
         <a href="#">Home</a>
-        <a href="#scores">Live Scores</a>
-        <a href="#videos">Highlights</a>
+        <a href="#scores">Scores</a>
+        <a href="#videos">Shorts</a>
+    </div>
+
+    <div class="ticker">
+        <marquee behavior="scroll" direction="left">
+            🔥 Transfer News: Mbappe to Real Madrid? | ⚽ Ronaldo scores another Hattrick! | 🏆 Premier League Title Race is On! | ⚽ Watch Latest Shorts Below!
+        </marquee>
     </div>
 
     <div class="hero">
         <h1 style="margin:0;">⚽ FOOTY VIBES</h1>
-        <p>Official Football Channel Website</p>
+        <p>Live Scores & Football Highlights</p>
     </div>
 
     <div class="card" id="scores">
@@ -38,7 +43,16 @@
         <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
     </div>
 
-    <h2 class="section-title" id="videos">🔥 Latest Football Shorts</h2>
+    <div class="card">
+        <h2 class="section-title">📊 Top Leagues</h2>
+        <div style="display: flex; justify-content: space-around; font-size: 14px; color: #bbb; padding: 10px;">
+            <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</span>
+            <span>🇪🇸 La Liga</span>
+            <span>🇮🇹 Serie A</span>
+        </div>
+    </div>
+
+    <h2 class="section-title" id="videos">🔥 Latest Shorts</h2>
 
     <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eotPLIjZlnY" allowfullscreen></iframe></div></div>
     <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LnkqvVZvmTs" allowfullscreen></iframe></div></div>
@@ -48,13 +62,11 @@
     <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" allowfullscreen></iframe></div></div>
 
     <div class="card">
-        <h2 class="section-title">📢 Official Contact</h2>
-        <p>For Business & Promotions, Contact Us:</p>
-        <a href="https://youtube.com/@mrrehanofficial1777" class="btn yt">Visit YouTube</a>
-        <a href="mailto:contact@footyvibes.com" class="btn promo">Work with Us</a>
+        <h2 class="section-title">📢 Join Us</h2>
+        <a href="https://youtube.com/@mrrehanofficial1777" class="btn">Subscribe YouTube</a>
     </div>
 
-    <footer>&copy; 2025 FootyVibes Tech | mrrehanofficial1777-tech</footer>
+    <footer>&copy; 2025 FootyVibes Tech</footer>
 
 </body>
 </html>
