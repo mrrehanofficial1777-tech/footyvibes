@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Pro | Live Community</title>
+    <title>FootyVibes Pro | Mega Hub</title>
     <style>
         :root { --primary: #ff0000; --dark: #050505; --accent: #f1c40f; --card: #121212; --blue: #00e5ff; }
         body { background-color: var(--dark); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
         
+        /* Mega Navbar */
         .navbar { background: var(--primary); padding: 12px; position: sticky; top: 0; z-index: 1000; display: flex; overflow-x: auto; gap: 20px; border-bottom: 3px solid var(--accent); }
         .navbar a { color: white; text-decoration: none; font-size: 11px; font-weight: bold; white-space: nowrap; text-transform: uppercase; }
 
@@ -15,11 +16,13 @@
         .card { background: var(--card); margin-bottom: 20px; padding: 20px; border-radius: 20px; border: 1px solid #222; text-align: left; }
         .section-title { color: var(--accent); font-size: 18px; margin-bottom: 15px; border-left: 5px solid var(--primary); padding-left: 10px; text-transform: uppercase; }
 
-        /* LIVE CHAT BOX STYLE */
-        .chat-container { width: 100%; height: 400px; background: #000; border-radius: 15px; border: 2px solid var(--primary); overflow: hidden; position: relative; }
-        .chat-header { background: var(--primary); color: white; padding: 10px; font-weight: bold; font-size: 14px; text-align: center; }
-        
-        /* Floating Buttons */
+        /* YouTube Shorts Styling */
+        .video-container { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 15px; background: #000; border: 2px solid var(--primary); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* Chat Container */
+        .chat-container { width: 100%; height: 400px; background: #000; border-radius: 15px; border: 2px solid var(--blue); overflow: hidden; }
+
         .social-menu { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
         .s-btn { padding: 10px 15px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; font-size: 12px; border: 2px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
     </style>
@@ -28,38 +31,35 @@
 
     <div class="navbar">
         <a href="#">🏠 Home</a>
+        <a href="#shorts">🎬 Shorts</a>
         <a href="#chat">💬 Live Chat</a>
-        <a href="#scores">⚽ Live Scores</a>
-        <a href="#news">📰 Breaking</a>
+        <a href="#scores">⚽ Scores</a>
         <a href="#join">👥 Fan Club</a>
     </div>
 
+    <marquee style="background:#222; padding:8px; color:var(--accent); font-size:12px;">🚨 WATCH NOW: New Football Shorts uploaded! | 🏆 UCL: Live scores updating... | ⚽ Welcome to FootyVibes Pro!</marquee>
+
     <div class="container">
         
-        <div class="card" id="chat">
-            <h2 class="section-title">Global Fan Chat</h2>
-            <p style="font-size: 12px; color: #888; margin-bottom: 10px;">Chat with other fans in real-time!</p>
-            <div class="chat-container">
-                <div class="chat-header">🔴 LIVE COMMUNITY CHAT</div>
-                <iframe src="https://deadsimplechat.com/embed/6_fJ0l_Iq" width="100%" height="360px" frameborder="0"></iframe>
+        <div class="card" id="shorts">
+            <h2 class="section-title">Trending Shorts 📺</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/eotPLIjZlnY" allowfullscreen></iframe>
             </div>
-            <p style="font-size: 10px; color: #555; margin-top: 5px;">*Powered by FootyVibes Community</p>
+            <a href="https://youtube.com/@mrrehanofficial1777" target="_blank" style="display:block; margin-top:15px; text-align:center; color:var(--primary); font-weight:bold; text-decoration:none;">Subscribe for More! 🔔</a>
+        </div>
+
+        <div class="card" id="chat">
+            <h2 class="section-title">Fan Chat 💬</h2>
+            <div class="chat-container">
+                <iframe src="https://deadsimplechat.com/embed/6_fJ0l_Iq" width="100%" height="400px" frameborder="0"></iframe>
+            </div>
         </div>
 
         <div class="card" id="scores">
-            <h2 class="section-title">Match Center</h2>
+            <h2 class="section-title">Live Matches ⚽</h2>
             <div id="fs-viewer-mount"></div>
             <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
-        </div>
-
-        <div class="card" id="news">
-            <h2 class="section-title">Latest Headlines</h2>
-            <marquee direction="up" scrollamount="2" style="height: 100px;">
-                <p>🚀 <b>Transfer:</b> Liverpool makes a record bid for Wirtz.</p>
-                <p>🏆 <b>UCL:</b> Champions League draw results published.</p>
-                <p>📉 <b>Injury:</b> Kevin De Bruyne out for 3 weeks.</p>
-                <p>⚽ <b>Goals:</b> Haaland leads the golden boot race.</p>
-            </marquee>
         </div>
 
     </div>
