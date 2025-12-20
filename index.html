@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Pro</title>
+    <title>FootyVibes Pro | Official</title>
     <style>
         :root { --primary: #ff0000; --dark: #050505; --accent: #f1c40f; --blue: #00e5ff; }
         body { background-color: var(--dark); color: white; font-family: sans-serif; margin: 0; padding: 0; text-align: center; }
+        
         .navbar { background: var(--primary); padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; }
         .navbar a { color: white; text-decoration: none; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+
+        /* Floating Instagram Button */
+        .insta-float { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 9999; border: 2px solid white; }
+
         .card { background: #121212; margin: 15px auto; padding: 0; border-radius: 20px; width: 90%; max-width: 450px; border: 1px solid #333; overflow: hidden; }
         .player-img { width: 100%; height: auto; display: block; border-bottom: 2px solid var(--blue); }
         .player-info { padding: 15px; text-align: left; }
-        .section-title { color: var(--accent); font-size: 18px; margin: 20px 0; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -20,19 +24,21 @@
     <div class="navbar">
         <a href="#">HOME</a>
         <a href="#scores">LIVE SCORES</a>
-        <a href="#videos">VIDEOS</a>
+        <a href="https://youtube.com/@mrrehanofficial1777" target="_blank">YOUTUBE</a>
     </div>
+
+    <a href="https://www.instagram.com/mr7.933?igsh=MXRlYW0xem1haXE3Zg==" target="_blank" class="insta-float">📸 Instagram</a>
 
     <div class="card">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR07fW_vS1yY_282v_H4P-uN605QWc9V_f54A&s" class="player-img" alt="Haaland">
         <div class="player-info">
             <h2 style="margin:0; font-size: 22px;">Erling Haaland</h2>
-            <p style="color: var(--blue); font-size: 14px; margin: 5px 0;">Manchester City | MVP of the Month</p>
+            <p style="color: var(--blue); font-size: 14px; margin: 5px 0;">Manchester City | Player of the Month</p>
         </div>
     </div>
 
     <div class="card" id="scores" style="padding: 15px;">
-        <h2 class="section-title">🏆 LIVE MATCHES</h2>
+        <h2 style="color: var(--accent);">🏆 LIVE MATCHES</h2>
         <div id="fs-viewer-mount"></div>
         <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
     </div>
