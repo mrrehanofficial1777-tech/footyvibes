@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Pro | Live & Interactive</title>
+    <title>FootyVibes Pro | Interactive Football Hub</title>
     <style>
         body { background-color: #050505; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; text-align: center; }
         .navbar { background: #ff0000; padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; font-weight: bold; }
@@ -15,8 +15,9 @@
         .video-wrapper { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 15px; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
         .league-btn { display: inline-block; padding: 10px 15px; margin: 5px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; font-size: 12px; }
-        .btn-main { padding: 12px 25px; border-radius: 30px; text-decoration: none; color: white; font-weight: bold; background: #ff0000; display: inline-block; margin: 10px; }
-        input[type="text"] { width: 70%; padding: 10px; border-radius: 5px; border: none; outline: none; }
+        .poll-btn { background: #333; color: white; border: 1px solid #ff0000; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; width: 80%; transition: 0.3s; }
+        .poll-btn:hover { background: #ff0000; }
+        input[type="text"] { width: 70%; padding: 10px; border-radius: 5px; border: none; outline: none; margin-bottom: 10px; }
         footer { padding: 30px; color: #666; font-size: 12px; }
     </style>
 </head>
@@ -25,12 +26,12 @@
     <div class="navbar">
         <a href="#">Home</a>
         <a href="#scores">Scores</a>
+        <a href="#poll">Voting</a>
         <a href="#videos">Shorts</a>
-        <a href="#leagues">Leagues</a>
     </div>
 
     <div class="ticker">
-        <marquee>🔥 Mbappe to Madrid? | ⚽ Ronaldo Hattrick! | 🏆 Premier League News | ⚽ New Shorts Uploaded!</marquee>
+        <marquee>🔥 Today's Big Match: Real Madrid vs Man City | ⚽ Vote for your Winner below! | 🏆 Latest Transfer Updates | 📺 New Shorts Uploaded!</marquee>
     </div>
 
     <div class="hero">
@@ -44,13 +45,20 @@
         <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
     </div>
 
+    <div class="card" id="poll">
+        <h2 class="section-title">🗳️ Match Prediction</h2>
+        <p style="color: #bbb;">Who will win today's Big Match?</p>
+        <button class="poll-btn" onclick="alert('Thanks for voting for Home Team!')">🏠 Home Team Wins</button>
+        <button class="poll-btn" onclick="alert('Thanks for voting for Draw!')">🤝 Match Draw</button>
+        <button class="poll-btn" onclick="alert('Thanks for voting for Away Team!')">🏃 Away Team Wins</button>
+    </div>
+
     <div class="card" id="leagues">
         <h2 class="section-title">📊 Tap to see Table</h2>
         <div style="padding: 10px;">
             <a href="https://www.google.com/search?q=premier+league+table" target="_blank" class="league-btn" style="background: #3d195d;">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a>
             <a href="https://www.google.com/search?q=la+liga+table" target="_blank" class="league-btn" style="background: #ee8707;">🇪🇸 La Liga</a>
             <a href="https://www.google.com/search?q=isl+table+2025" target="_blank" class="league-btn" style="background: #003366;">🇮🇳 ISL</a>
-            <a href="https://www.google.com/search?q=champions+league+standings" target="_blank" class="league-btn" style="background: #001e4d;">🏆 UCL</a>
         </div>
     </div>
 
@@ -58,7 +66,7 @@
         <h2 class="section-title">🔍 Search Player Stats</h2>
         <form action="https://www.google.com/search" method="get" target="_blank">
             <input type="text" name="q" placeholder="Example: Messi stats 2025">
-            <button type="submit" style="padding: 10px; background: #ff0000; border: none; color: white; border-radius: 5px; cursor: pointer;">Go</button>
+            <button type="submit" style="padding: 10px; background: #ff0000; border: none; color: white; border-radius: 5px; cursor: pointer;">Search</button>
         </form>
     </div>
 
@@ -71,12 +79,7 @@
     <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5aEt5xcQUqA" allowfullscreen></iframe></div></div>
     <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" allowfullscreen></iframe></div></div>
 
-    <div class="card">
-        <h2 class="section-title">📢 Stay Connected</h2>
-        <a href="https://youtube.com/@mrrehanofficial1777" class="btn-main">Visit YouTube</a>
-    </div>
-
-    <footer>&copy; 2025 FootyVibes Tech | All Rights Reserved</footer>
+    <footer>&copy; 2025 FootyVibes Tech</footer>
 
 </body>
 </html>
