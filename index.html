@@ -1,104 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes Ultra | Official Hub</title>
-    <style>
-        :root { --primary: #ff0000; --dark: #050505; --card-bg: #121212; --accent: #f1c40f; }
-        body { background-color: var(--dark); color: white; font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 0; text-align: center; scroll-behavior: smooth; }
-        
-        /* Premium Navbar */
-        .navbar { background: var(--primary); padding: 15px; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: center; gap: 15px; box-shadow: 0 4px 15px rgba(255,0,0,0.3); }
-        .navbar a { color: white; text-decoration: none; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* News Ticker */
-        .ticker { background: #1a1a1a; color: var(--accent); padding: 10px; font-size: 14px; border-bottom: 2px solid var(--primary); font-weight: bold; }
-
-        /* Hero Section */
-        .hero { padding: 60px 20px; background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1000'); background-size: cover; background-position: center; border-bottom: 5px solid var(--primary); }
-        
-        /* Cards & Sections */
-        .card { background: var(--card-bg); margin: 20px auto; padding: 20px; border-radius: 20px; width: 90%; max-width: 500px; border: 1px solid #333; transition: 0.3s; }
-        .card:hover { border-color: var(--primary); box-shadow: 0 0 20px rgba(255,0,0,0.2); }
-        .section-title { color: var(--accent); font-size: 22px; margin-bottom: 15px; text-transform: uppercase; font-weight: 800; }
-
-        /* Buttons */
-        .btn { display: inline-block; padding: 12px 20px; margin: 5px; border-radius: 50px; text-decoration: none; color: white; font-weight: bold; font-size: 13px; transition: 0.3s; border: none; cursor: pointer; }
-        .btn-yt { background: var(--primary); width: 80%; }
-        .btn-share { background: #25d366; width: 80%; }
-        .league-btn { background: #333; font-size: 11px; padding: 10px; }
-
-        /* Video Gallery */
-        .video-wrapper { position: relative; padding-bottom: 177.77%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        /* Sub Counter Style */
-        .sub-count { font-size: 28px; color: var(--primary); font-weight: bold; margin: 10px 0; }
-        
-        footer { padding: 50px; background: #000; color: #555; font-size: 11px; border-top: 1px solid #222; }
-    </style>
-</head>
-<body>
-
-    <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#scores">Scores</a>
-        <a href="#news">News</a>
-        <a href="#videos">Shorts</a>
-    </div>
-
-    <div class="ticker">
-        <marquee>⚽ LIVE: Transfer Market is Open! | 🏆 UCL Draw Updates | 🔥 New Video: Best Goals of the Week | 🗳️ Vote for your favorite player below!</marquee>
-    </div>
-
-    <div class="hero">
-        <h1 style="margin:0; font-size: 36px; letter-spacing: 2px;">FOOTY VIBES</h1>
-        <p style="color: #aaa; margin-top: 10px;">The Ultimate Football Destination</p>
-    </div>
-
-    <div class="card">
-        <h2 class="section-title">📊 Channel Growth</h2>
-        <div class="sub-count">1,000+</div>
-        <p style="font-size: 12px; color: #888;">Real-time Football Fans</p>
-        <a href="https://youtube.com/@mrrehanofficial1777" target="_blank" class="btn btn-yt">SUBSCRIBE NOW</a>
-    </div>
-
-    <div class="card" id="scores">
-        <h2 class="section-title">🏆 Live Matches</h2>
-        <div id="fs-viewer-mount"></div>
-        <script>(function(w,d,s,o,f,js,fjs){w['FreeScoreWidgetsObject']=o;w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)},w[o].l=1*new Date();js=d.createElement(s),fjs=d.getElementsByTagName(s)[0];js.id=o;js.src=f;js.async=1;fjs.parentNode.insertBefore(js,fjs);}(window,document,'script','mw','https://widget.enetscores.com/FW69D2C8E465B2023C'));</script>
-    </div>
-
     <div class="card" id="news">
-        <h2 class="section-title">🗞️ Football News</h2>
-        <div style="height: 200px; overflow-y: scroll; text-align: left; font-size: 14px; padding: 10px; background: #000; border-radius: 10px; color: #ccc;">
-            <p>• <b>Breaking:</b> Manchester City vs Arsenal match updates...</p>
-            <p>• <b>Transfer:</b> Liverpool scouting new midfielders...</p>
-            <p>• <b>Injury:</b> Top striker out for 3 weeks...</p>
-            <p>• <b>UCL:</b> Quarter-final matches announced...</p>
+        <h2 class="section-title">🗞️ Football News Hub</h2>
+        
+        <div style="background: #ff0000; color: white; padding: 5px; font-size: 12px; font-weight: bold; border-radius: 5px; margin-bottom: 10px;">
+            BREAKING: Champions League Draw Tonight!
+        </div>
+
+        <div style="height: 250px; overflow-y: auto; text-align: left; padding: 10px; background: #000; border-radius: 15px; border: 1px solid #333;">
+            
+            <div style="border-bottom: 1px solid #222; padding: 10px 0;">
+                <span style="color: #ff0000; font-size: 10px; font-weight: bold;">TRANSFER</span>
+                <p style="margin: 5px 0; font-size: 14px;"><b>Mbappe's</b> first training session at Madrid creates buzz! <a href="https://www.google.com/search?q=mbappe+madrid+news" target="_blank" style="color: #f1c40f; text-decoration: none;">[Read]</a></p>
+            </div>
+
+            <div style="border-bottom: 1px solid #222; padding: 10px 0;">
+                <span style="color: #27ae60; font-size: 10px; font-weight: bold;">MATCH REPORT</span>
+                <p style="margin: 5px 0; font-size: 14px;"><b>Ronaldo</b> leads Al-Nassr to a thumping 4-0 victory. <a href="https://www.google.com/search?q=ronaldo+last+match+result" target="_blank" style="color: #f1c40f; text-decoration: none;">[Read]</a></p>
+            </div>
+
+            <div style="border-bottom: 1px solid #222; padding: 10px 0;">
+                <span style="color: #0088cc; font-size: 10px; font-weight: bold;">INJURY UPDATES</span>
+                <p style="margin: 5px 0; font-size: 14px;"><b>Erling Haaland</b> returns to full training with Man City. <a href="https://www.google.com/search?q=haaland+injury+news" target="_blank" style="color: #f1c40f; text-decoration: none;">[Read]</a></p>
+            </div>
+
         </div>
     </div>
-
-    <div class="card">
-        <h2 class="section-title">📲 Share Website</h2>
-        <p style="font-size: 12px; color: #888;">Share this site with your football friends!</p>
-        <a href="https://api.whatsapp.com/send?text=Check%20out%20this%20awesome%20Football%20site:%20https://mrrehanofficial1777-tech.github.io/footyvibes/" class="btn btn-share">SHARE ON WHATSAPP</a>
-    </div>
-
-    <h2 class="section-title" id="videos">🔥 Latest Shorts</h2>
-
-    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eotPLIjZlnY" allowfullscreen></iframe></div></div>
-    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/LnkqvVZvmTs" allowfullscreen></iframe></div></div>
-    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/FpOjjedgSX8" allowfullscreen></iframe></div></div>
-    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/dhHDJXNDwHg" allowfullscreen></iframe></div></div>
-    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/5aEt5xcQUqA" allowfullscreen></iframe></div></div>
-    <div class="card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" allowfullscreen></iframe></div></div>
-
-    <footer>
-        <p>&copy; 2025 FootyVibes Tech | mrrehanofficial1777-tech</p>
-        <p>Built for Football Fans</p>
-    </footer>
-
-</body>
-</html>
