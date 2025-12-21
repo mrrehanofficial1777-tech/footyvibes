@@ -5,61 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MdRehan | MR7 OFFICIAL</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
         body { background-color: #000; color: #fff; }
 
-        /* TOP NAVIGATION */
+        /* TOP HEADER */
         header {
-            background: rgba(0,0,0,0.9); padding: 12px 5%; display: flex;
+            background: rgba(0,0,0,0.9); padding: 15px 5%; display: flex;
             justify-content: space-between; align-items: center;
-            border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000;
+            border-bottom: 3px solid #ff0000; position: sticky; top: 0; z-index: 1000;
         }
-        .logo { color: #ff0000; font-size: 1.4rem; font-weight: 800; letter-spacing: 1px; }
-        .sub-btn-top {
-            background: #ff0000; color: #fff; padding: 8px 18px; border-radius: 5px;
-            text-decoration: none; font-weight: bold; font-size: 0.8rem;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
-        }
+        .logo { color: #ff0000; font-size: 1.5rem; font-weight: bold; }
+        .sub-btn { background: #ff0000; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; }
 
-        /* HERO SECTION WITH YOUR PHOTO */
+        /* HERO SECTION - JAHAN AAPKI PHOTO HAI */
         .hero {
-            height: 80vh; display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center;
-            /* AAPKI PHOTO KA BACKGROUND YAHAN HAI */
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
-                        url('https://inline-images.googleusercontent.com/image_generation_content/0'); 
-            background-size: cover; 
+            height: 90vh; width: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            /* YE HAI AAPKI PHOTO KA LINK */
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://inline-images.googleusercontent.com/image_generation_content/0');
+            background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             border-bottom: 5px solid #ff0000;
         }
-        .hero h2 { font-size: 3.5rem; text-transform: uppercase; color: #fff; text-shadow: 2px 2px 8px #000; }
-        .hero p { font-size: 1.1rem; color: #fff; background: rgba(255, 0, 0, 0.8); padding: 5px 15px; border-radius: 4px; font-weight: bold; margin-top: 5px; }
+        .hero h2 { font-size: 4.5rem; color: #fff; text-shadow: 4px 4px 15px #000; text-transform: uppercase; }
+        .hero p { font-size: 1.5rem; color: #fff; background: rgba(255,0,0,0.7); padding: 5px 20px; border-radius: 5px; margin-top: 10px; }
 
-        /* CONTENT */
-        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-        .card { background: #111; padding: 15px; border-radius: 12px; border: 1px solid #222; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        /* ABOUT */
-        .about-box { background: #1a1a1a; padding: 25px; border-radius: 15px; margin-top: 30px; border-left: 6px solid #ff0000; }
+        /* VIDEO SECTION */
+        .container { max-width: 1200px; margin: 40px auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 25px; }
+        .card { background: #111; padding: 20px; border-radius: 15px; border: 1px solid #222; }
+        .v-box { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; }
+        .v-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
         /* FOOTER */
-        footer { background: #000; padding: 40px 20px; text-align: center; border-top: 1px solid #333; }
-        .social-links { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .s-btn { padding: 10px 20px; border-radius: 5px; text-decoration: none; color: #fff; font-weight: bold; }
-        .inst { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+        footer { text-align: center; padding: 60px 20px; border-top: 3px solid #ff0000; background: #000; }
+        .social-links a { display: inline-block; margin: 10px; padding: 15px 30px; border-radius: 10px; text-decoration: none; color: #fff; font-weight: bold; }
+        .insta { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
         .fb { background: #1877F2; }
-
-        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .hero h2 { font-size: 2.5rem; } }
+        
+        @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } .hero h2 { font-size: 3rem; } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">MR7 OFFICIAL</div>
-        <a href="https://youtube.com/@mr7official777?sub_confirmation=1" target="_blank" class="sub-btn-top">SUBSCRIBE</a>
+        <a href="https://youtube.com/@mr7official777?sub_confirmation=1" target="_blank" class="sub-btn">SUBSCRIBE</a>
     </header>
 
     <section class="hero">
@@ -70,30 +62,25 @@
     <div class="container">
         <div class="grid">
             <div class="card">
-                <h3 style="color: #ff0000; margin-bottom: 10px;">🔥 Latest Action</h3>
-                <div class="video-wrapper">
+                <h3 style="color:#ff0000; margin-bottom:15px;">Latest Football Video</h3>
+                <div class="v-box">
                     <iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="card">
-                <h3 style="color: #ff0000; text-align: center; margin-bottom: 10px;">📺 Shorts</h3>
-                <iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" width="100%" height="400" frameborder="0" allowfullscreen style="border-radius: 8px;"></iframe>
+                <h3 style="color:#ff0000; text-align:center;">Shorts</h3>
+                <iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" width="100%" height="400" frameborder="0" allowfullscreen style="border-radius:10px; margin-top:15px;"></iframe>
             </div>
-        </div>
-
-        <div class="about-box">
-            <h3 style="color: #ff0000;">MdRehan - Football Enthusiast</h3>
-            <p style="margin-top: 10px; color: #ccc;">Doston, main MdRehan aapka swagat karta hoon mere official platform par. Ise subscribe karein aur football journey ka hissa banein!</p>
         </div>
     </div>
 
     <footer>
-        <p>Mujhe Social Media par Follow karein</p>
+        <h2>Contact & Social Media</h2>
         <div class="social-links">
-            <a href="https://www.instagram.com/mr7.933?igsh=MXRlYW0xem1haXE3Zg==" target="_blank" class="s-btn inst">Instagram</a>
-            <a href="https://www.facebook.com/share/1DNWzyJKJZ/" target="_blank" class="s-btn fb">Facebook</a>
+            <a href="https://www.instagram.com/mr7.933?igsh=MXRlYW0xem1haXE3Zg==" target="_blank" class="insta">Instagram</a>
+            <a href="https://www.facebook.com/share/1DNWzyJKJZ/" target="_blank" class="fb">Facebook</a>
         </div>
-        <p style="margin-top: 20px; color: #444; font-size: 0.8rem;">&copy; 2024 MR7 OFFICIAL</p>
+        <p style="margin-top:30px; color:#555;">&copy; 2024 MdRehan | MR7 OFFICIAL</p>
     </footer>
 
 </body>
