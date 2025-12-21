@@ -48,17 +48,26 @@
         .about-text h3 { color: #ff0000; font-size: 2rem; margin-bottom: 10px; }
         .badge { background: #ff0000; color: white; padding: 5px 15px; border-radius: 5px; font-size: 0.9rem; font-weight: bold; }
 
-        /* Footer with Instagram Link */
+        /* Footer with Social Links */
         footer { 
             text-align: center; padding: 50px; background: #000; margin-top: 50px; 
             border-top: 2px solid #ff0000; 
         }
+        .social-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        
         .insta-btn {
-            display: inline-flex; align-items: center; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: white; padding: 12px 25px; border-radius: 10px; text-decoration: none;
-            font-weight: bold; font-size: 1.1rem; margin-top: 15px; transition: 0.3s;
+            font-weight: bold; transition: 0.3s;
         }
-        .insta-btn:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4); }
+        
+        .fb-btn {
+            background: #1877F2;
+            color: white; padding: 12px 25px; border-radius: 10px; text-decoration: none;
+            font-weight: bold; transition: 0.3s;
+        }
+
+        .insta-btn:hover, .fb-btn:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1); }
 
         @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } }
     </style>
@@ -98,19 +107,22 @@
                     Namaste doston! Mera naam <b>MdRehan</b> hai. Main ek passionate Football enthusiast hoon aur 
                     <b>MR7 OFFICIAL</b> ke zariye aap tak football ki behtareen skills, matches aur updates lata hoon.
                 </p>
-                <p style="color: #bbb; margin-top: 10px;">
-                    Humari 777 family ka hissa banne ke liye dhanyawad. Naye updates ke liye jude rahein!
-                </p>
             </div>
         </section>
     </div>
 
     <footer>
-        <p style="font-size: 1.2rem; margin-bottom: 10px;">Follow Me for Behind the Scenes!</p>
+        <p style="font-size: 1.2rem; margin-bottom: 10px;">Connect with me on Social Media</p>
         
-        <a href="https://www.instagram.com/mr7.933?igsh=MXRlYW0xem1haXE3Zg==" target="_blank" class="insta-btn">
-             Instagram: @mr7.933
-        </a>
+        <div class="social-btns">
+            <a href="https://www.instagram.com/mr7.933?igsh=MXRlYW0xem1haXE3Zg==" target="_blank" class="insta-btn">
+                 Instagram
+            </a>
+
+            <a href="https://www.facebook.com/share/1DNWzyJKJZ/" target="_blank" class="fb-btn">
+                 Facebook
+            </a>
+        </div>
 
         <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; color: #777;">
             <p>&copy; 2024 MdRehan | MR7 OFFICIAL. All Rights Reserved.</p>
