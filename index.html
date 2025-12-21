@@ -1,104 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FootyVibes | Ultimate Football Hub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>MR7 OFFICIAL - Welcome to My World</title>
     <style>
-        body { transition: background-color 0.3s, color 0.3s; }
-        .glass-effect { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
-        .dark { background-color: #0f172a; color: white; }
+        /* Basic Reset & Font */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #0f0f0f; color: white; line-height: 1.6; }
+
+        /* Header */
+        header {
+            background: rgba(0,0,0,0.9); padding: 20px; text-align: center;
+            border-bottom: 2px solid #ff0000; position: sticky; top: 0; z-index: 1000;
+        }
+        header h1 { color: #ff0000; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80');
+            background-size: cover; background-position: center;
+        }
+        .hero h2 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+        .hero p { font-size: 1.3rem; color: #ccc; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .sub-btn-big {
+            display: inline-block; background: #ff0000; color: white; padding: 18px 45px;
+            text-decoration: none; font-weight: bold; border-radius: 50px; font-size: 1.3rem;
+            transition: 0.3s ease-in-out; box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+        }
+        .sub-btn-big:hover { transform: scale(1.1); background: #cc0000; }
+
+        /* Main Content Grid */
+        .container { max-width: 1200px; margin: 50px auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+
+        /* Video Section */
+        .video-card { background: #1a1a1a; padding: 30px; border-radius: 20px; border: 1px solid #333; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* Sidebar Section */
+        .sidebar-card { background: #1a1a1a; padding: 30px; border-radius: 20px; border: 1px solid #333; height: fit-content; }
+        .short-video { width: 100%; height: 450px; border-radius: 10px; margin-top: 20px; border: 2px solid #ff0000; }
+
+        /* About Section */
+        .about-section {
+            background: #1a1a1a; padding: 50px; border-radius: 20px;
+            margin-top: 50px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px;
+            border: 1px solid #333;
+        }
+        .about-image { flex: 1; min-width: 250px; text-align: center; }
+        .about-image img { max-width: 100%; height: auto; border-radius: 50%; border: 5px solid #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+        .about-text { flex: 2; min-width: 300px; }
+        .about-text h3 { color: #ff0000; font-size: 2.2rem; margin-bottom: 15px; }
+        .about-text p { font-size: 1.1rem; color: #ccc; line-height: 1.8; margin-bottom: 15px; }
+
+        /* Social Media Section */
+        .social-section {
+            text-align: center; background: #000; padding: 50px 20px; margin-top: 50px;
+            border-top: 2px solid #ff0000;
+        }
+        .social-section h3 { color: #ff0000; font-size: 2.5rem; margin-bottom: 30px; }
+        .social-icons a {
+            color: white; text-decoration: none; font-size: 1.5rem; margin: 0 15px;
+            transition: 0.3s; display: inline-block;
+        }
+        .social-icons a:hover { transform: translateY(-5px) scale(1.1); color: #ff0000; }
+
+        /* Footer */
+        footer { text-align: center; padding: 40px; background: #000; margin-top: 50px; color: #777; }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+            .hero h2 { font-size: 2.5rem; }
+            .about-section { flex-direction: column; text-align: center; }
+            .about-image { margin-bottom: 30px; }
+        }
+        @media (max-width: 600px) {
+            .hero h2 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .sub-btn-big { padding: 12px 30px; font-size: 1rem; }
+            .about-text h3 { font-size: 1.8rem; }
+            .about-text p { font-size: 1rem; }
+            .social-icons a { font-size: 1.2rem; margin: 0 10px; }
+        }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body>
 
-    <nav class="bg-blue-700 p-4 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold italic tracking-wider">FOOTY VIBES</h1>
-            <ul class="hidden md:flex space-x-6 font-medium">
-                <li><a href="#" class="hover:text-yellow-400">Matches</a></li>
-                <li><a href="#" class="hover:text-yellow-400">News</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Transfers</a></li>
-                <li><a href="#" class="hover:text-yellow-400">Stats</a></li>
-            </ul>
-            <button onclick="toggleDarkMode()" class="p-2 bg-blue-800 rounded-full hover:bg-blue-900">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-    </nav>
-
-    <header class="bg-blue-600 text-white py-20 text-center px-4">
-        <h2 class="text-5xl font-extrabold mb-4">Feel the Vibration of Football</h2>
-        <p class="text-xl opacity-90">Live Scores, Latest News, and In-depth Match Analysis.</p>
-        <button class="mt-6 bg-yellow-400 text-blue-900 px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transform hover:scale-105 transition">Check Live Scores</button>
+    <header>
+        <h1>MR7 OFFICIAL</h1>
     </header>
 
-    <main class="container mx-auto mt-10 px-4">
-        
-        <section class="mb-12">
-            <h3 class="text-2xl font-bold border-l-4 border-blue-700 pl-3 mb-6">Live & Upcoming</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-red-500 hover:shadow-xl transition">
-                    <div class="flex justify-between items-center text-sm font-bold text-red-500">
-                        <span>Premier League</span>
-                        <span class="animate-pulse">● LIVE 75'</span>
-                    </div>
-                    <div class="flex justify-between items-center mt-4">
-                        <span class="text-lg font-bold">Liverpool</span>
-                        <span class="text-2xl font-black">2 - 1</span>
-                        <span class="text-lg font-bold">Arsenal</span>
-                    </div>
+    <section class="hero">
+        <h2>Welcome to the 777 Family!</h2>
+        <p>Gaming, Action, Entertainment, and Dhamakedar Shorts. Sab Kuch Ek Hi Jagah!</p>
+        <a href="https://youtube.com/@mr7official777?sub_confirmation=1" target="_blank" class="sub-btn-big">SUBSCRIBE NOW</a>
+    </section>
+
+    <div class="container">
+        <div class="grid">
+            
+            <div class="video-card">
+                <h3 style="margin-bottom: 20px; color: #ff0000; font-size: 1.8rem;">🔥 Latest Upload</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500">
-                    <div class="text-sm font-bold text-gray-500 uppercase">La Liga - Today 21:00</div>
-                    <div class="flex justify-between items-center mt-4">
-                        <span class="text-lg font-bold">Real Madrid</span>
-                        <span class="text-xl font-bold text-gray-400">VS</span>
-                        <span class="text-lg font-bold">Barcelona</span>
-                    </div>
+                <div style="margin-top: 25px;">
+                    <h4 style="color: white; font-size: 1.5rem;">About This Channel</h4>
+                    <p style="color: #bbb; font-size: 1.1rem;">Hello Doston! Main hoon MR7 aur is channel par main aapke liye laya hoon sabse cool gaming content, action-packed videos, aur mazedaar shorts. Agar aapko meri videos pasand aati hain toh like, share aur subscribe zaroor karein! Aapka support mere liye bahut mayne rakhta hai.</p>
                 </div>
             </div>
-        </section>
 
-        <section class="mb-12">
-            <h3 class="text-2xl font-bold border-l-4 border-blue-700 pl-3 mb-6">Transfer Market Feed</h3>
-            <div class="bg-gray-800 text-white p-4 rounded-lg overflow-hidden relative">
-                <div class="whitespace-nowrap animate-marquee">
-                    🔥 <span class="text-yellow-400 font-bold">MBAPPE</span> to Real Madrid is Official! | 
-                    ⚡ <span class="text-yellow-400 font-bold">HAALAND</span> breaks more records! | 
-                    ⚽ <span class="text-yellow-400 font-bold">MESSI</span> scores a hat-trick in MLS!
+            <div class="sidebar-card">
+                <h3 style="text-align: center; color: #ff0000; font-size: 1.8rem;">📺 Trending Short</h3>
+                <iframe class="short-video" src="https://www.youtube.com/embed/WHNoC8PsJW8" frameborder="0" allowfullscreen></iframe>
+                <div style="text-align: center; margin-top: 20px;">
+                    <p style="font-size: 1.1rem;">Mera sabse naya aur trending short video dekhiye!</p>
+                    <a href="https://youtube.com/@mr7official777" target="_blank" style="color: #ff0000; text-decoration: none; font-weight: bold; font-size: 1.1rem;">Check All Shorts →</a>
                 </div>
             </div>
-        </section>
 
-    </main>
-
-    <footer class="bg-gray-900 text-white py-10 text-center mt-20">
-        <p class="opacity-70">&copy; 2024 FootyVibes. Created by MrRehanOfficial.</p>
-        <div class="mt-4 flex justify-center space-x-4">
-            <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter text-2xl"></i></a>
-            <a href="#" class="hover:text-pink-400"><i class="fab fa-instagram text-2xl"></i></a>
-            <a href="#" class="hover:text-red-500"><i class="fab fa-youtube text-2xl"></i></a>
         </div>
+
+        <section class="about-section">
+            <div class="about-image">
+                <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=MR7+OFFICIAL" alt="MR7 Official" />
+            </div>
+            <div class="about-text">
+                <h3>Mere Baare Mein</h3>
+                <p>Namaste doston! Mera naam [Apna Asli Naam Yahan Dalein] hai aur main MR7 OFFICIAL ka creator hoon. Main ek passionate gamer aur content creator hoon jo aapke liye rozaana naya aur mazedaar content laata hai.</p>
+                <p>Mera maqsad aapka manoranjan karna, aapko hansana aur gaming ki duniya mein aapke saath judna hai. Har video mein main apni poori mehnat aur lagan se kaam karta hoon taaki aapko best experience mil sake.</p>
+                <p>Aapka har support, har like, comment aur subscribe mujhe aur bhi behtar karne ki prerna deta hai. Humari 777 family mein judne ke liye dhanyawad!</p>
+            </div>
+        </section>
+
+    </div>
+
+    <section class="social-section">
+        <h3>Mere Saath Judein</h3>
+        <p style="margin-bottom: 30px; font-size: 1.1rem; color: #ccc;">Naye updates aur behind-the-scenes ke liye mere social media accounts par follow karein!</p>
+        <div class="social-icons">
+            <a href="https://youtube.com/@mr7official777" target="_blank" title="YouTube Channel">
+                <img src="https://img.icons8.com/color/48/ffffff/youtube-play.png" alt="YouTube" style="width:48px;height:48px;"/>
+            </a>
+            <a href="https://instagram.com/mr7official777" target="_blank" title="Instagram Profile">
+                <img src="https://img.icons8.com/color/48/ffffff/instagram-new--v1.png" alt="Instagram" style="width:48px;height:48px;"/>
+            </a>
+            <a href="https://facebook.com/mr7official777" target="_blank" title="Facebook Page">
+                <img src="https://img.icons8.com/color/48/ffffff/facebook-new.png" alt="Facebook" style="width:48px;height:48px;"/>
+            </a>
+            </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 MR7 OFFICIAL Website. All Rights Reserved.</p>
+        <p>Created with ❤️ for the 777 Family.</p>
     </footer>
 
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark');
-        }
-    </script>
-
-    <style>
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .animate-marquee {
-            display: inline-block;
-            animation: marquee 15s linear infinite;
-        }
-    </style>
 </body>
 </html>
