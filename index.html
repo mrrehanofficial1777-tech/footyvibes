@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR7 OFFICIAL - Welcome to My World</title>
+    <title>MdRehan - MR7 OFFICIAL</title>
     <style>
-        /* Basic Reset & Font */
+        /* Design Settings */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
         body { background-color: #0f0f0f; color: white; line-height: 1.6; }
 
@@ -19,73 +19,39 @@
         /* Hero Section */
         .hero {
             padding: 80px 20px; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80');
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80');
             background-size: cover; background-position: center;
         }
-        .hero h2 { font-size: 3.5rem; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-        .hero p { font-size: 1.3rem; color: #ccc; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .hero h2 { font-size: 3.5rem; margin-bottom: 10px; }
         .sub-btn-big {
-            display: inline-block; background: #ff0000; color: white; padding: 18px 45px;
-            text-decoration: none; font-weight: bold; border-radius: 50px; font-size: 1.3rem;
-            transition: 0.3s ease-in-out; box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+            display: inline-block; background: #ff0000; color: white; padding: 15px 40px;
+            text-decoration: none; font-weight: bold; border-radius: 50px; transition: 0.3s;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
         }
-        .sub-btn-big:hover { transform: scale(1.1); background: #cc0000; }
+        .sub-btn-big:hover { transform: scale(1.1); }
 
-        /* Main Content Grid */
-        .container { max-width: 1200px; margin: 50px auto; padding: 20px; }
-        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        /* Container & Grid */
+        .container { max-width: 1200px; margin: 40px auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
 
         /* Video Section */
-        .video-card { background: #1a1a1a; padding: 30px; border-radius: 20px; border: 1px solid #333; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+        .card { background: #1a1a1a; padding: 25px; border-radius: 15px; border: 1px solid #333; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* Sidebar Section */
-        .sidebar-card { background: #1a1a1a; padding: 30px; border-radius: 20px; border: 1px solid #333; height: fit-content; }
-        .short-video { width: 100%; height: 450px; border-radius: 10px; margin-top: 20px; border: 2px solid #ff0000; }
-
-        /* About Section */
-        .about-section {
-            background: #1a1a1a; padding: 50px; border-radius: 20px;
-            margin-top: 50px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px;
-            border: 1px solid #333;
+        /* About Section (MdRehan Football Special) */
+        .about-box {
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            padding: 40px; border-radius: 20px; margin-top: 40px;
+            border-left: 5px solid #ff0000; display: flex; align-items: center; flex-wrap: wrap; gap: 30px;
         }
-        .about-image { flex: 1; min-width: 250px; text-align: center; }
-        .about-image img { max-width: 100%; height: auto; border-radius: 50%; border: 5px solid #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
-        .about-text { flex: 2; min-width: 300px; }
-        .about-text h3 { color: #ff0000; font-size: 2.2rem; margin-bottom: 15px; }
-        .about-text p { font-size: 1.1rem; color: #ccc; line-height: 1.8; margin-bottom: 15px; }
-
-        /* Social Media Section */
-        .social-section {
-            text-align: center; background: #000; padding: 50px 20px; margin-top: 50px;
-            border-top: 2px solid #ff0000;
-        }
-        .social-section h3 { color: #ff0000; font-size: 2.5rem; margin-bottom: 30px; }
-        .social-icons a {
-            color: white; text-decoration: none; font-size: 1.5rem; margin: 0 15px;
-            transition: 0.3s; display: inline-block;
-        }
-        .social-icons a:hover { transform: translateY(-5px) scale(1.1); color: #ff0000; }
+        .about-text h3 { color: #ff0000; font-size: 2rem; margin-bottom: 10px; }
+        .badge { background: #ff0000; color: white; padding: 5px 15px; border-radius: 5px; font-size: 0.9rem; font-weight: bold; }
 
         /* Footer */
-        footer { text-align: center; padding: 40px; background: #000; margin-top: 50px; color: #777; }
+        footer { text-align: center; padding: 40px; background: #000; margin-top: 50px; border-top: 1px solid #333; }
 
-        /* Responsive */
-        @media (max-width: 850px) {
-            .grid { grid-template-columns: 1fr; }
-            .hero h2 { font-size: 2.5rem; }
-            .about-section { flex-direction: column; text-align: center; }
-            .about-image { margin-bottom: 30px; }
-        }
-        @media (max-width: 600px) {
-            .hero h2 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
-            .sub-btn-big { padding: 12px 30px; font-size: 1rem; }
-            .about-text h3 { font-size: 1.8rem; }
-            .about-text p { font-size: 1rem; }
-            .social-icons a { font-size: 1.2rem; margin: 0 10px; }
-        }
+        @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -95,69 +61,48 @@
     </header>
 
     <section class="hero">
-        <h2>Welcome to the 777 Family!</h2>
-        <p>Gaming, Action, Entertainment, and Dhamakedar Shorts. Sab Kuch Ek Hi Jagah!</p>
+        <h2>MdRehan Official</h2>
+        <p>Football Skills, News & Action Updates!</p>
         <a href="https://youtube.com/@mr7official777?sub_confirmation=1" target="_blank" class="sub-btn-big">SUBSCRIBE NOW</a>
     </section>
 
     <div class="container">
         <div class="grid">
-            
-            <div class="video-card">
-                <h3 style="margin-bottom: 20px; color: #ff0000; font-size: 1.8rem;">🔥 Latest Upload</h3>
+            <div class="card">
+                <h3 style="margin-bottom: 15px; color: #ff0000;">🔥 Latest Football Action</h3>
                 <div class="video-container">
                     <iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <div style="margin-top: 25px;">
-                    <h4 style="color: white; font-size: 1.5rem;">About This Channel</h4>
-                    <p style="color: #bbb; font-size: 1.1rem;">Hello Doston! Main hoon MR7 aur is channel par main aapke liye laya hoon sabse cool gaming content, action-packed videos, aur mazedaar shorts. Agar aapko meri videos pasand aati hain toh like, share aur subscribe zaroor karein! Aapka support mere liye bahut mayne rakhta hai.</p>
-                </div>
             </div>
 
-            <div class="sidebar-card">
-                <h3 style="text-align: center; color: #ff0000; font-size: 1.8rem;">📺 Trending Short</h3>
-                <iframe class="short-video" src="https://www.youtube.com/embed/WHNoC8PsJW8" frameborder="0" allowfullscreen></iframe>
-                <div style="text-align: center; margin-top: 20px;">
-                    <p style="font-size: 1.1rem;">Mera sabse naya aur trending short video dekhiye!</p>
-                    <a href="https://youtube.com/@mr7official777" target="_blank" style="color: #ff0000; text-decoration: none; font-weight: bold; font-size: 1.1rem;">Check All Shorts →</a>
-                </div>
+            <div class="card">
+                <h3 style="text-align: center; color: #ff0000;">📺 Trending Short</h3>
+                <iframe src="https://www.youtube.com/embed/WHNoC8PsJW8" width="100%" height="400" frameborder="0" allowfullscreen style="border-radius: 10px; margin-top: 15px;"></iframe>
             </div>
-
         </div>
 
-        <section class="about-section">
-            <div class="about-image">
-                <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=MR7+OFFICIAL" alt="MR7 Official" />
-            </div>
+        <section class="about-box">
             <div class="about-text">
-                <h3>Mere Baare Mein</h3>
-                <p>Namaste doston! Mera naam [Apna Asli Naam Yahan Dalein] hai aur main MR7 OFFICIAL ka creator hoon. Main ek passionate gamer aur content creator hoon jo aapke liye rozaana naya aur mazedaar content laata hai.</p>
-                <p>Mera maqsad aapka manoranjan karna, aapko hansana aur gaming ki duniya mein aapke saath judna hai. Har video mein main apni poori mehnat aur lagan se kaam karta hoon taaki aapko best experience mil sake.</p>
-                <p>Aapka har support, har like, comment aur subscribe mujhe aur bhi behtar karne ki prerna deta hai. Humari 777 family mein judne ke liye dhanyawad!</p>
+                <span class="badge">Official Category: Football ⚽</span>
+                <h3 style="margin-top: 10px;">Mere Baare Mein - MdRehan</h3>
+                <p style="font-size: 1.1rem; color: #ccc;">
+                    Namaste doston! Mera naam <b>MdRehan</b> hai. Main ek passionate Football enthusiast hoon aur 
+                    <b>MR7 OFFICIAL</b> ke zariye aap tak football ki behtareen skills, matches aur updates lata hoon.
+                </p>
+                <p style="color: #bbb; margin-top: 10px;">
+                    Agar aapko football pasand hai aur aap meri journey ka hissa banna chahte hain, toh is 777 family 
+                    mein aapka swagat hai. Subscribe karke support zaroor karein!
+                </p>
             </div>
         </section>
-
     </div>
 
-    <section class="social-section">
-        <h3>Mere Saath Judein</h3>
-        <p style="margin-bottom: 30px; font-size: 1.1rem; color: #ccc;">Naye updates aur behind-the-scenes ke liye mere social media accounts par follow karein!</p>
-        <div class="social-icons">
-            <a href="https://youtube.com/@mr7official777" target="_blank" title="YouTube Channel">
-                <img src="https://img.icons8.com/color/48/ffffff/youtube-play.png" alt="YouTube" style="width:48px;height:48px;"/>
-            </a>
-            <a href="https://instagram.com/mr7official777" target="_blank" title="Instagram Profile">
-                <img src="https://img.icons8.com/color/48/ffffff/instagram-new--v1.png" alt="Instagram" style="width:48px;height:48px;"/>
-            </a>
-            <a href="https://facebook.com/mr7official777" target="_blank" title="Facebook Page">
-                <img src="https://img.icons8.com/color/48/ffffff/facebook-new.png" alt="Facebook" style="width:48px;height:48px;"/>
-            </a>
-            </div>
-    </section>
-
     <footer>
-        <p>&copy; 2024 MR7 OFFICIAL Website. All Rights Reserved.</p>
-        <p>Created with ❤️ for the 777 Family.</p>
+        <p>&copy; 2024 MdRehan | MR7 OFFICIAL. All Rights Reserved.</p>
+        <div style="margin-top: 15px;">
+            <a href="https://youtube.com/@mr7official777" style="color: #ff0000; text-decoration: none;">YouTube</a> | 
+            <a href="#" style="color: white; text-decoration: none; margin-left: 10px;">Instagram</a>
+        </div>
     </footer>
 
 </body>
