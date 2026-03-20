@@ -1,184 +1,831 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eid Mubarak</title>
-
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<title>Eid Mubarak ✦</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet"/>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+/* ═══════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
+html{
+  height:100%;
+  /* fix mobile 100vh issue */
+  height:-webkit-fill-available;
+}
 body{
-    height:100vh;
-    overflow:hidden;
-    background:#000;
-    font-family:'Segoe UI',sans-serif;
+  width:100%;height:100%;
+  min-height:100vh;
+  min-height:-webkit-fill-available;
+  background:#000;
+  overflow:hidden;
+  overscroll-behavior:none;
+  touch-action:none;
 }
 
-/* MULTI LAYER BACKGROUND */
-.bg-layer{
-    position:absolute;
-    width:100%;
-    height:100%;
+/* ═══════════════════════════════════
+   CANVAS STACK
+═══════════════════════════════════ */
+.cv{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  display:block;
+}
+#c-bg  {z-index:1}
+#c-geo {z-index:2;opacity:.11;pointer-events:none}
+#c-main{z-index:3}
+#c-fx  {z-index:4;pointer-events:none}
+
+/* ═══════════════════════════════════
+   STAGE  (all HTML text)
+═══════════════════════════════════ */
+#stage{
+  position:fixed;inset:0;
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+  pointer-events:none;
+  /* text lives in bottom 42% — moon owns the top */
+  padding-bottom: max(6vh, env(safe-area-inset-bottom, 0px) + 5vh);
+  padding-bottom: calc(max(6vh, 28px) + env(safe-area-inset-bottom, 0px));
 }
 
-.bg1{
-    background: radial-gradient(circle at center, #0b0f3a, #000);
-    animation: zoomSlow 20s infinite alternate ease-in-out;
+/* ── Arabic heading ── */
+#ar{
+  font-family:'Amiri',serif;
+  font-weight:700;
+  font-size:clamp(2.8rem,11vw,7rem);
+  line-height:1;
+  letter-spacing:.04em;
+  text-align:center;
+  color:transparent;
+  background:linear-gradient(175deg,
+    #fffde0 0%,#ffe98a 20%,#d4af37 45%,#fffacc 68%,#c8920a 100%);
+  -webkit-background-clip:text;background-clip:text;
+  opacity:0;
+  transform:translateY(32px) scale(.88);
+  will-change:opacity,filter,transform;
+  transition:
+    opacity    3.6s cubic-bezier(.16,1,.3,1),
+    filter     3.6s cubic-bezier(.16,1,.3,1),
+    transform  3.6s cubic-bezier(.16,1,.3,1);
+  filter:
+    drop-shadow(0 0 24px rgba(212,175,55,.6))
+    drop-shadow(0 4px 16px rgba(0,0,0,.9))
+    blur(20px);
+}
+#ar.show{
+  opacity:1;transform:translateY(0) scale(1);
+  filter:
+    drop-shadow(0 0 38px rgba(212,175,55,.85))
+    drop-shadow(0 0 90px rgba(212,175,55,.4))
+    drop-shadow(0 5px 22px rgba(0,0,0,1))
+    blur(0px);
 }
 
-.bg2{
-    background: radial-gradient(circle at 30% 70%, rgba(255,215,0,0.08), transparent);
+/* ── ornament ── */
+#orn{
+  display:flex;align-items:center;gap:14px;
+  margin:clamp(10px,2.5vh,20px) 0 clamp(8px,2vh,16px);
+  opacity:0;
+  transform:scaleX(.5);
+  transition:
+    opacity   2s ease,
+    transform 2s cubic-bezier(.34,1.56,.64,1);
+}
+#orn.show{opacity:1;transform:scaleX(1)}
+.oline{
+  height:1px;
+  width:clamp(45px,10vw,130px);
+  background:linear-gradient(to right,transparent,rgba(212,175,55,.7),transparent);
+}
+.oline.r{background:linear-gradient(to left,transparent,rgba(212,175,55,.7),transparent)}
+.osym{
+  font-size:clamp(.9rem,2.5vw,1.35rem);
+  color:rgba(212,175,55,.88);
+  text-shadow:0 0 16px rgba(212,175,55,.75);
+  white-space:nowrap;
 }
 
-@keyframes zoomSlow{
-    from{transform:scale(1)}
-    to{transform:scale(1.3)}
+/* ── English heading ── */
+#en{
+  font-family:'Cinzel Decorative',cursive;
+  font-weight:700;
+  font-size:clamp(.95rem,4.2vw,3rem);
+  letter-spacing:.25em;
+  text-align:center;
+  color:transparent;
+  background:linear-gradient(160deg,
+    #fff9e6 0%,#ffe98a 24%,#d4af37 48%,#fffde7 70%,#9a7808 100%);
+  -webkit-background-clip:text;background-clip:text;
+  opacity:0;
+  transform:translateY(20px) scale(.92);
+  will-change:opacity,filter,transform;
+  transition:
+    opacity    3s cubic-bezier(.16,1,.3,1) .15s,
+    filter     3s cubic-bezier(.16,1,.3,1) .15s,
+    transform  3s cubic-bezier(.16,1,.3,1) .15s;
+  filter:
+    drop-shadow(0 0 18px rgba(212,175,55,.6))
+    drop-shadow(0 4px 14px rgba(0,0,0,.8))
+    blur(18px);
+  /* prevent letter-spacing overflow on mobile */
+  padding-right:.25em;
+  max-width:96vw;
+  overflow:hidden;
+}
+#en.show{
+  opacity:1;transform:translateY(0) scale(1);
+  filter:
+    drop-shadow(0 0 30px rgba(212,175,55,.8))
+    drop-shadow(0 0 80px rgba(212,175,55,.35))
+    drop-shadow(0 5px 20px rgba(0,0,0,1))
+    blur(0px);
 }
 
-/* STARS (3 LAYERS FOR DEPTH) */
-.star{
-    position:absolute;
-    border-radius:50%;
+/* ── sub tagline ── */
+#sub{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:300;
+  font-size:clamp(.75rem,2.2vw,1.05rem);
+  letter-spacing:.2em;
+  text-align:center;
+  color:rgba(255,240,180,0);
+  margin-top:clamp(10px,2vh,18px);
+  padding:0 20px;
+  transition:color 3.2s ease;
+  text-shadow:0 0 20px rgba(212,175,55,.4);
+  max-width:90vw;
 }
+#sub.show{color:rgba(255,240,180,.5)}
 
-.star.small{width:1px;height:1px;opacity:0.5}
-.star.medium{width:2px;height:2px;opacity:0.7}
-.star.large{width:3px;height:3px;opacity:1}
-
-@keyframes twinkle{
-    0%{opacity:0.2}
-    50%{opacity:1}
-    100%{opacity:0.3}
+/* ── bottom hint ── */
+#hint{
+  position:fixed;
+  bottom:max(22px, env(safe-area-inset-bottom, 0px) + 14px);
+  left:50%;transform:translateX(-50%);
+  z-index:6;pointer-events:none;
+  opacity:0;transition:opacity 2.5s ease;
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  white-space:nowrap;
 }
-
-/* MOON (IMPROVED 3D LOOK) */
-.moon{
-    position:absolute;
-    top:40%;
-    left:50%;
-    width:220px;
-    height:220px;
-    border-radius:50%;
-    transform:translate(-50%,-50%) scale(0.5);
-    background: radial-gradient(circle at 30% 30%, #fff, #ddd 50%, #aaa 80%);
-    box-shadow:
-        -60px 0 0 0 #000,
-        0 0 60px rgba(255,255,200,0.8),
-        0 0 140px rgba(255,215,0,0.5);
-    opacity:0;
-    animation: moonReveal 3s cubic-bezier(.25,.8,.25,1) forwards 2s;
+#hint.show{opacity:1}
+#hint span{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(.65rem,.9vw,.8rem);
+  letter-spacing:.28em;
+  color:rgba(212,175,55,.42);
 }
-
-@keyframes moonReveal{
-    to{
-        opacity:1;
-        transform:translate(-50%,-50%) scale(1);
-    }
+.dot-row{display:flex;gap:6px;align-items:center}
+.dp{
+  width:3px;height:3px;border-radius:50%;
+  background:rgba(212,175,55,.5);
+  animation:dpulse 2.4s ease-in-out infinite;
 }
+.dp:nth-child(2){animation-delay:.4s}
+.dp:nth-child(3){animation-delay:.8s}
+@keyframes dpulse{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.9;transform:scale(1.8)}}
 
-/* TEXT */
-.text{
-    position:absolute;
-    top:62%;
-    width:100%;
-    text-align:center;
-    font-size:64px;
-    letter-spacing:6px;
-    color:white;
-    opacity:0;
-    transform:translateY(40px) scale(0.8);
-    text-shadow:
-        0 0 20px #fff,
-        0 0 50px gold,
-        0 0 120px rgba(255,215,0,0.9);
-    animation: textIn 3s ease forwards 3.5s, pulse 4s infinite 6s;
+/* ── tap ripple ── */
+.ripple{
+  position:fixed;border-radius:50%;pointer-events:none;
+  border:1px solid rgba(212,175,55,.5);
+  transform:translate(-50%,-50%) scale(0);
+  z-index:7;
+  animation:rippleOut 1.2s cubic-bezier(.22,1,.36,1) forwards;
 }
-
-@keyframes textIn{
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-@keyframes pulse{
-    0%,100%{text-shadow:0 0 20px #fff,0 0 50px gold}
-    50%{text-shadow:0 0 40px #fff,0 0 120px gold}
-}
-
-/* SHIMMER EFFECT */
-.text::after{
-    content:"Eid Mubarak";
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    background:linear-gradient(90deg, transparent, white, transparent);
-    -webkit-background-clip:text;
-    color:transparent;
-    opacity:0;
-    animation: shimmer 5s infinite 6s;
-}
-
-@keyframes shimmer{
-    0%{opacity:0; transform:translateX(-100%)}
-    50%{opacity:1}
-    100%{opacity:0; transform:translateX(100%)}
-}
-
-/* PARTICLES */
-.particle{
-    position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    opacity:0.5;
-    animation: float linear infinite;
-}
-
-@keyframes float{
-    from{transform:translateY(100vh)}
-    to{transform:translateY(-10vh)}
+@keyframes rippleOut{
+  0%  {transform:translate(-50%,-50%) scale(0);opacity:.7}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:0}
 }
 </style>
 </head>
-
 <body>
 
-<div class="bg-layer bg1"></div>
-<div class="bg-layer bg2"></div>
+<canvas id="c-bg"  class="cv"></canvas>
+<canvas id="c-geo" class="cv"></canvas>
+<canvas id="c-main"class="cv"></canvas>
+<canvas id="c-fx"  class="cv"></canvas>
 
-<div class="moon"></div>
-<div class="text">Eid Mubarak ✨</div>
+<div id="stage">
+  <div id="ar"  class="t-base">عيد مبارك</div>
+  <div id="orn" class="t-base">
+    <div class="oline"></div>
+    <span class="osym">✦ ☪ ✦</span>
+    <div class="oline r"></div>
+  </div>
+  <div id="en"  class="t-base">EID MUBARAK</div>
+  <div id="sub">May peace &amp; blessings fill your world</div>
+</div>
+
+<div id="hint">
+  <span>✦ &nbsp; A L W A Y S &nbsp; B L E S S E D &nbsp; ✦</span>
+  <div class="dot-row">
+    <div class="dp"></div><div class="dp"></div><div class="dp"></div>
+  </div>
+</div>
 
 <script>
-// STARS GENERATOR (3 layers)
-function createStars(count, type){
-    for(let i=0;i<count;i++){
-        let s=document.createElement("div");
-        s.className="star "+type;
-        s.style.left=Math.random()*100+"vw";
-        s.style.top=Math.random()*100+"vh";
-        s.style.animation="twinkle "+(2+Math.random()*4)+"s infinite";
-        document.body.appendChild(s);
+/* ════════════════════════════════════════
+   DEVICE DETECTION
+════════════════════════════════════════ */
+const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+  || window.innerWidth < 768;
+
+/* ════════════════════════════════════════
+   CANVAS FACTORY  (capped DPR for perf)
+════════════════════════════════════════ */
+function mkCanvas(id, maxDpr = 2){
+  const el = document.getElementById(id);
+  const ctx = el.getContext('2d');
+  let W, H, dpr;
+  function resize(){
+    dpr  = Math.min(window.devicePixelRatio || 1, maxDpr);
+    W    = window.innerWidth;
+    H    = window.innerHeight;
+    el.width  = Math.round(W * dpr);
+    el.height = Math.round(H * dpr);
+    el.style.width  = W + 'px';
+    el.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  // also handle orientation change on mobile
+  window.addEventListener('orientationchange', () => setTimeout(resize, 200));
+  return { el, ctx, get W(){ return W }, get H(){ return H } };
+}
+
+const BG   = mkCanvas('c-bg',   isMobile ? 1.5 : 2);
+const GEO  = mkCanvas('c-geo',  1);
+const MAIN = mkCanvas('c-main', isMobile ? 1.5 : 2);
+const FX   = mkCanvas('c-fx',   isMobile ? 1.5 : 2);
+
+/* ════════════════════════════════════════
+   POINTER / GYRO  (parallax source)
+════════════════════════════════════════ */
+let px = 0, py = 0;   // -1 … +1 offset from center
+
+// Mouse (desktop)
+window.addEventListener('mousemove', e => {
+  px = (e.clientX / window.innerWidth  - .5) * 2;
+  py = (e.clientY / window.innerHeight - .5) * 2;
+});
+
+// Touch (mobile) — drag to shift parallax
+window.addEventListener('touchmove', e => {
+  const t = e.touches[0];
+  px = (t.clientX / window.innerWidth  - .5) * 2;
+  py = (t.clientY / window.innerHeight - .5) * 2;
+}, { passive: true });
+
+// Gyroscope on mobile (tilt parallax)
+if (isMobile && window.DeviceOrientationEvent) {
+  window.addEventListener('deviceorientation', e => {
+    // gamma = left/right tilt (-90..90), beta = front/back tilt
+    if (e.gamma != null) {
+      px = Math.max(-1, Math.min(1, e.gamma / 30));
+      py = Math.max(-1, Math.min(1, (e.beta  - 30) / 40));
     }
+  }, true);
 }
 
-createStars(80,"small");
-createStars(50,"medium");
-createStars(30,"large");
+// smooth px/py
+let spx = 0, spy = 0;
 
-// PARTICLES
-for(let i=0;i<50;i++){
-    let p=document.createElement("div");
-    p.className="particle";
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(6+Math.random()*10)+"s";
-    document.body.appendChild(p);
+/* ════════════════════════════════════════
+   TIMELINE  (seconds)
+════════════════════════════════════════ */
+const T = {
+  glowStart:   0.8,
+  auroraStart: 1.4,
+  moonStart:   2.0,
+  moonFull:    5.8,
+  starsStart:  2.6,
+  shootStart:  5.2,
+  mosqueStart: 4.2,
+  partStart:   3.8,
+  arShow:      6.1,
+  ornShow:     7.5,
+  enShow:      7.9,
+  subShow:     9.3,
+  hintShow:   11.0,
+};
+let elapsed = 0, last = null, auroraPhase = 0;
+
+/* ════════════════════════════════════════
+   ISLAMIC GEOMETRIC  (static, drawn once)
+════════════════════════════════════════ */
+(function initGeo(){
+  const { ctx, W, H } = GEO;
+  const sz = Math.min(W, H) * (isMobile ? .09 : .068);
+  ctx.strokeStyle = 'rgba(212,175,55,1)';
+  ctx.lineWidth   = isMobile ? .8 : .6;
+  function star8(x, y, r){
+    ctx.save(); ctx.translate(x, y);
+    ctx.beginPath();
+    for(let i = 0; i < 8; i++){
+      const a = i * Math.PI / 4, b = a + Math.PI / 8, ir = r * .38;
+      i === 0
+        ? ctx.moveTo(Math.cos(a) * r, Math.sin(a) * r)
+        : ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+      ctx.lineTo(Math.cos(b) * ir, Math.sin(b) * ir);
+    }
+    ctx.closePath(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(0, 0, r * .2, 0, Math.PI * 2); ctx.stroke();
+    ctx.restore();
+  }
+  const step = sz * 2.2;
+  for(let y = -sz; y < H + sz * 2; y += step)
+    for(let x = -sz; x < W + sz * 2; x += step)
+      star8(x, y, sz * .82);
+})();
+
+/* ════════════════════════════════════════
+   STARS
+════════════════════════════════════════ */
+const STAR_COUNT = isMobile ? 220 : 340;
+const STARS = Array.from({ length: STAR_COUNT }, () => ({
+  nx:    Math.random(),
+  ny:    Math.random() * .88,
+  r:     .2 + Math.random() * 1.4,
+  tw:    Math.random() * Math.PI * 2,
+  spd:   .007 + Math.random() * .016,
+  maxA:  .18 + Math.random() * .72,
+  birth: T.starsStart + Math.random() * 5.5,
+  pf:    .2  + Math.random() * .9,
+  cross: Math.random() > .74,
+}));
+
+/* ════════════════════════════════════════
+   SHOOTING STARS
+════════════════════════════════════════ */
+const SHOOTS = [];
+let nextShoot = T.shootStart;
+function spawnShoot(){
+  const ltr = Math.random() > .45;
+  SHOOTS.push({
+    x:     ltr ? -20 : BG.W + 20,
+    y:     BG.H * (.04 + Math.random() * .42),
+    vx:    ltr ? (3 + Math.random() * 4) : -(3 + Math.random() * 4),
+    vy:    1 + Math.random() * 2.2,
+    len:   isMobile ? 90 + Math.random() * 120 : 130 + Math.random() * 180,
+    life:  1,
+    decay: .018 + Math.random() * .016,
+    ia:    0,
+  });
 }
+
+/* ════════════════════════════════════════
+   PARTICLES
+════════════════════════════════════════ */
+const P_MAX  = isMobile ? 90 : 150;
+const PARTS  = [];
+function mkPart(forceActive){
+  return {
+    x:      Math.random() * (BG.W || window.innerWidth),
+    y:      (BG.H || window.innerHeight) * .1 + Math.random() * (BG.H || window.innerHeight) * .85,
+    vx:     (Math.random() - .5) * .17,
+    vy:     -(Math.random() * .28 + .03),
+    r:      .55 + Math.random() * 1.8,
+    life:   1,
+    decay:  .0009 + Math.random() * .0014,
+    hue:    35 + Math.random() * 30,
+    sat:    62 + Math.random() * 32,
+    birth:  forceActive ? 0 : T.partStart + Math.random() * 4.5,
+    active: !!forceActive,
+  };
+}
+for(let i = 0; i < P_MAX; i++) PARTS.push(mkPart(false));
+
+/* ════════════════════════════════════════
+   TAP / CLICK  RIPPLE + SPARKLE
+════════════════════════════════════════ */
+function tapEffect(x, y){
+  // DOM ripple ring
+  const r = document.createElement('div');
+  r.className = 'ripple';
+  const size = Math.min(window.innerWidth, window.innerHeight) * .55;
+  r.style.cssText = `left:${x}px;top:${y}px;width:${size}px;height:${size}px`;
+  document.body.appendChild(r);
+  r.addEventListener('animationend', () => r.remove());
+  // burst particles
+  for(let i = 0; i < (isMobile ? 18 : 28); i++){
+    const p = mkPart(true);
+    p.x = x; p.y = y;
+    const a = Math.random() * Math.PI * 2;
+    const spd = 1 + Math.random() * 3;
+    p.vx = Math.cos(a) * spd;
+    p.vy = Math.sin(a) * spd - 1;
+    p.r  = 1 + Math.random() * 2.5;
+    p.life = 1; p.decay = .018 + Math.random() * .02;
+    PARTS.push(p);
+  }
+}
+window.addEventListener('click',       e => tapEffect(e.clientX, e.clientY));
+window.addEventListener('touchstart',  e => {
+  const t = e.touches[0];
+  tapEffect(t.clientX, t.clientY);
+}, { passive: true });
+
+/* ════════════════════════════════════════
+   AURORA  (drawn on BG)
+════════════════════════════════════════ */
+function drawAurora(p){
+  const { ctx, W, H } = BG;
+  // teal-indigo atmospheric bands
+  [
+    { cy:.78, h:.25, c1:'rgba(8,34,72,', c2:'rgba(4,18,44,' },
+    { cy:.60, h:.20, c1:'rgba(5,24,52,', c2:'rgba(3,12,32,' },
+  ].forEach(b => {
+    const gy = H * b.cy;
+    const g  = ctx.createLinearGradient(0, gy - H * b.h, 0, gy + H * b.h * .5);
+    g.addColorStop(0, 'rgba(0,0,0,0)');
+    g.addColorStop(.3, b.c1 + (p * .14) + ')');
+    g.addColorStop(.6, b.c2 + (p * .09) + ')');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  });
+  // golden horizon shimmer
+  const sh = ctx.createLinearGradient(0, H * .55, 0, H);
+  sh.addColorStop(0, 'rgba(0,0,0,0)');
+  sh.addColorStop(.5, `rgba(55,38,4,${p * .07 + Math.sin(auroraPhase * 1.4) * .02})`);
+  sh.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = sh; ctx.fillRect(0, 0, W, H);
+}
+
+/* ════════════════════════════════════════
+   MOSQUE  SILHOUETTE
+════════════════════════════════════════ */
+function drawMosque(p){
+  const { ctx, W, H } = MAIN;
+  ctx.save();
+  ctx.globalAlpha = p * .26;
+  const s = Math.min(W, H) / 640;
+  ctx.translate(W / 2, H);
+  ctx.scale(s, s);
+
+  const mg = ctx.createLinearGradient(0, -560, 0, 0);
+  mg.addColorStop(0,   'rgba(212,175,55,.60)');
+  mg.addColorStop(.35, 'rgba(170,130,25,.28)');
+  mg.addColorStop(.7,  'rgba(90,60,8,.10)');
+  mg.addColorStop(1,   'rgba(30,18,2,.03)');
+  ctx.fillStyle = mg;
+
+  // main dome
+  ctx.beginPath(); ctx.arc(0, -290, 138, Math.PI, 0);
+  ctx.lineTo(138, -210); ctx.lineTo(-138, -210); ctx.closePath(); ctx.fill();
+  // drum
+  ctx.fillRect(-112, -248, 224, 42);
+  // body
+  ctx.fillRect(-210, -210, 420, 210);
+  // left tall minaret
+  ctx.fillRect(-330, -410, 46, 410);
+  ctx.beginPath(); ctx.arc(-307, -410, 25, Math.PI, 0); ctx.fill();
+  ctx.fillRect(-315, -448, 16, 40);
+  // right tall minaret
+  ctx.fillRect(284, -410, 46, 410);
+  ctx.beginPath(); ctx.arc(307, -410, 25, Math.PI, 0); ctx.fill();
+  ctx.fillRect(299, -448, 16, 40);
+  // small side minarets
+  [-238, 192].forEach(bx => {
+    ctx.fillRect(bx, -320, 30, 110);
+    ctx.beginPath(); ctx.arc(bx + 15, -320, 16, Math.PI, 0); ctx.fill();
+  });
+  // arched windows
+  [-148, -74, 0, 74, 148].forEach(wx => {
+    ctx.beginPath(); ctx.rect(wx - 17, -155, 34, 90);
+    ctx.arc(wx, -155, 17, Math.PI, 0); ctx.fill();
+  });
+  ctx.restore();
+
+  // ground reflection glow
+  ctx.save();
+  const rg = ctx.createLinearGradient(0, H * .74, 0, H);
+  rg.addColorStop(0, `rgba(212,175,55,${p * .08})`);
+  rg.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = rg; ctx.fillRect(0, H * .74, W, H * .26);
+  ctx.restore();
+}
+
+/* ════════════════════════════════════════
+   MOON  (full 3-D, responsive size)
+════════════════════════════════════════ */
+function drawMoon(p){
+  if(p <= 0) return;
+  const { ctx, W, H } = MAIN;
+
+  // Moon sits in upper 30% of screen — responsive
+  const R     = Math.min(W, H) * (isMobile ? .19 : .165);
+  const moonX = W / 2;
+  const moonY = H * (isMobile ? .30 : .28);
+  const floatY = Math.sin(elapsed * .38) * (isMobile ? 4 : 7);
+  const MY = moonY + floatY;
+
+  ctx.save();
+  ctx.globalAlpha = Math.min(1, p * 1.55);
+
+  // ── far halo ──
+  const h1 = ctx.createRadialGradient(moonX, MY, R * .4, moonX, MY, R * 4.6);
+  h1.addColorStop(0,   'rgba(255,205,55,.18)');
+  h1.addColorStop(.28, 'rgba(190,145,25,.08)');
+  h1.addColorStop(.65, 'rgba(70,50,5,.022)');
+  h1.addColorStop(1,   'rgba(0,0,0,0)');
+  ctx.fillStyle = h1;
+  ctx.beginPath(); ctx.arc(moonX, MY, R * 4.6, 0, Math.PI * 2); ctx.fill();
+
+  // ── pulsing corona ──
+  const pulse = .92 + Math.sin(elapsed * 1.05) * .08;
+  const h2    = ctx.createRadialGradient(moonX, MY, R * .32, moonX, MY, R * 2.4 * pulse);
+  h2.addColorStop(0,   'rgba(255,232,105,.38)');
+  h2.addColorStop(.38, 'rgba(212,175,55,.16)');
+  h2.addColorStop(.75, 'rgba(130,95,8,.05)');
+  h2.addColorStop(1,   'rgba(0,0,0,0)');
+  ctx.fillStyle = h2;
+  ctx.beginPath(); ctx.arc(moonX, MY, R * 2.4 * pulse, 0, Math.PI * 2); ctx.fill();
+
+  // ── moon disk ──
+  const disk = ctx.createRadialGradient(
+    moonX - R * .31, MY - R * .37, R * .02,
+    moonX, MY, R
+  );
+  disk.addColorStop(0,    '#fffde9');
+  disk.addColorStop(.11,  '#ffee9e');
+  disk.addColorStop(.28,  '#ffd93a');
+  disk.addColorStop(.50,  '#eba800');
+  disk.addColorStop(.70,  '#b87000');
+  disk.addColorStop(.86,  '#6b3a00');
+  disk.addColorStop(1,    '#1c0d00');
+  ctx.shadowColor = 'rgba(255,200,55,.75)';
+  ctx.shadowBlur  = 55 * p;
+  ctx.fillStyle = disk;
+  ctx.beginPath(); ctx.arc(moonX, MY, R, 0, Math.PI * 2); ctx.fill();
+  ctx.shadowBlur = 0;
+
+  // ── crescent dark mask ──
+  const shift = R * .57;
+  const cr = ctx.createRadialGradient(
+    moonX + shift - R * .04, MY - R * .06, R * .03,
+    moonX + shift, MY, R * 1.09
+  );
+  cr.addColorStop(0,   'rgba(1,2,12,.99)');
+  cr.addColorStop(.48, 'rgba(2,4,16,.97)');
+  cr.addColorStop(.78, 'rgba(4,6,22,.88)');
+  cr.addColorStop(1,   'rgba(6,8,26,0)');
+  ctx.fillStyle = cr;
+  ctx.beginPath(); ctx.arc(moonX + shift, MY, R * 1.05, 0, Math.PI * 2); ctx.fill();
+
+  // ── inner depth shadow ──
+  const inn = ctx.createRadialGradient(moonX + R * .22, MY + R * .12, 0, moonX + R * .22, MY + R * .12, R * .58);
+  inn.addColorStop(0, 'rgba(0,0,0,.25)');
+  inn.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = inn;
+  ctx.beginPath(); ctx.arc(moonX, MY, R, 0, Math.PI * 2); ctx.fill();
+
+  // ── rim back-light ──
+  const rim = ctx.createRadialGradient(moonX + R * .82, MY, 0, moonX + R * .82, MY, R * .60);
+  rim.addColorStop(0, 'rgba(255,222,140,.24)');
+  rim.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = rim;
+  ctx.beginPath(); ctx.arc(moonX, MY, R, 0, Math.PI * 2); ctx.fill();
+
+  // ── specular ──
+  const spec = ctx.createRadialGradient(moonX - R * .33, MY - R * .40, 0, moonX - R * .33, MY - R * .40, R * .43);
+  spec.addColorStop(0,   'rgba(255,255,248,.64)');
+  spec.addColorStop(.42, 'rgba(255,248,195,.22)');
+  spec.addColorStop(1,   'rgba(0,0,0,0)');
+  ctx.fillStyle = spec;
+  ctx.beginPath(); ctx.arc(moonX, MY, R, 0, Math.PI * 2); ctx.fill();
+
+  // ── rotating light rays ──
+  const rayA = Math.min(1, p * 1.4) * (p > .6 ? .11 : .03);
+  if(rayA > 0){
+    for(let ra = 0; ra < 12; ra++){
+      const ang = ra * (Math.PI / 6) + elapsed * .014;
+      ctx.save(); ctx.translate(moonX, MY); ctx.rotate(ang);
+      const rl = ctx.createLinearGradient(0, 0, R * 4.8, 0);
+      rl.addColorStop(0,  'rgba(255,222,75,.2)');
+      rl.addColorStop(.5, 'rgba(212,175,55,.07)');
+      rl.addColorStop(1,  'rgba(0,0,0,0)');
+      ctx.globalAlpha = rayA;
+      ctx.fillStyle = rl;
+      ctx.beginPath();
+      ctx.moveTo(R * .9, -2.5); ctx.lineTo(R * 4.8, -9);
+      ctx.lineTo(R * 4.8, 9);   ctx.lineTo(R * .9,  2.5);
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+    }
+    ctx.globalAlpha = Math.min(1, p * 1.55);
+  }
+
+  // ── companion star ──
+  const sx = moonX + R * 1.13, sy = MY - R * .78;
+  const sAge = Math.min(1, (p - .48) * 2.4);
+  if(sAge > 0){
+    const sa   = sAge * (.58 + Math.sin(elapsed * 2.3) * .42);
+    const sRad = isMobile ? 12 : 14;
+    const sg   = ctx.createRadialGradient(sx, sy, 0, sx, sy, sRad);
+    sg.addColorStop(0, `rgba(255,248,200,${sa})`);
+    sg.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(sx, sy, sRad, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = `rgba(255,244,188,${sa * .72})`; ctx.lineWidth = .9;
+    const cLen = isMobile ? 16 : 20;
+    [0, 1, 2, 3].forEach(i => {
+      const a = i * Math.PI / 2;
+      ctx.beginPath(); ctx.moveTo(sx, sy);
+      ctx.lineTo(sx + Math.cos(a) * cLen, sy + Math.sin(a) * cLen); ctx.stroke();
+    });
+    ctx.lineWidth = .45;
+    [1, 3, 5, 7].forEach(i => {
+      const a = i * Math.PI / 4;
+      ctx.beginPath(); ctx.moveTo(sx, sy);
+      ctx.lineTo(sx + Math.cos(a) * (cLen * .6), sy + Math.sin(a) * (cLen * .6)); ctx.stroke();
+    });
+  }
+
+  ctx.restore();
+}
+
+/* ════════════════════════════════════════
+   DRAW STARS
+════════════════════════════════════════ */
+function drawStars(){
+  const { ctx, W, H } = MAIN;
+  STARS.forEach(s => {
+    if(elapsed < s.birth) return;
+    s.tw += s.spd;
+    const age   = Math.min(1, (elapsed - s.birth) / 4.5);
+    const alpha = age * s.maxA * (.4 + Math.sin(s.tw) * .6);
+    // parallax: smooth pointer offsets
+    const offX  = spx * -22 * s.pf;
+    const offY  = spy * -13 * s.pf;
+    const px2   = ((s.nx * W + offX) % W + W) % W;
+    const py2   = ((s.ny * H + offY) % H + H) % H;
+    // glow
+    const sg = ctx.createRadialGradient(px2, py2, 0, px2, py2, s.r * 5);
+    sg.addColorStop(0, `rgba(255,248,215,${alpha * .52})`);
+    sg.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(px2, py2, s.r * 5, 0, Math.PI * 2); ctx.fill();
+    // core
+    ctx.fillStyle = `rgba(255,252,228,${alpha})`;
+    ctx.beginPath(); ctx.arc(px2, py2, s.r, 0, Math.PI * 2); ctx.fill();
+    // cross glint
+    if(s.cross && alpha > .33){
+      ctx.strokeStyle = `rgba(255,248,215,${alpha * .5})`; ctx.lineWidth = .5;
+      const gl = s.r * 5 + 1;
+      ctx.beginPath(); ctx.moveTo(px2 - gl, py2); ctx.lineTo(px2 + gl, py2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(px2, py2 - gl); ctx.lineTo(px2, py2 + gl); ctx.stroke();
+    }
+  });
+}
+
+/* ════════════════════════════════════════
+   DRAW SHOOTING STARS
+════════════════════════════════════════ */
+function drawShoots(){
+  const { ctx } = FX;
+  for(let i = SHOOTS.length - 1; i >= 0; i--){
+    const s = SHOOTS[i];
+    s.x += s.vx; s.y += s.vy;
+    s.life -= s.decay; s.ia = Math.min(1, s.ia + .07);
+    if(s.life <= 0){ SHOOTS.splice(i, 1); continue; }
+    const ang  = Math.atan2(s.vy, s.vx);
+    const tx   = s.x - Math.cos(ang) * s.len;
+    const ty   = s.y - Math.sin(ang) * s.len;
+    const g    = ctx.createLinearGradient(tx, ty, s.x, s.y);
+    g.addColorStop(0,   'rgba(255,248,220,0)');
+    g.addColorStop(.55, `rgba(255,240,178,${s.life * s.ia * .32})`);
+    g.addColorStop(1,   `rgba(255,255,255,${s.life * s.ia * .95})`);
+    ctx.strokeStyle = g; ctx.lineWidth = 1.8;
+    ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(s.x, s.y); ctx.stroke();
+    // head glow
+    const hg = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 9);
+    hg.addColorStop(0, `rgba(255,255,242,${s.life * s.ia})`);
+    hg.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(s.x, s.y, 9, 0, Math.PI * 2); ctx.fill();
+  }
+  if(elapsed > nextShoot && Math.random() > .28){
+    spawnShoot();
+    nextShoot = elapsed + 2.8 + Math.random() * 5;
+  }
+}
+
+/* ════════════════════════════════════════
+   DRAW PARTICLES
+════════════════════════════════════════ */
+function drawParts(){
+  const { ctx, W, H } = MAIN;
+  // cull excess
+  while(PARTS.length > P_MAX + 60) PARTS.shift();
+
+  PARTS.forEach(p => {
+    if(elapsed < p.birth) return;
+    if(!p.active){ p.active = true; p.x = Math.random() * W; p.y = H * .1 + Math.random() * H * .85; }
+    p.x  += p.vx + spx * -.04 * p.r;
+    p.y  += p.vy;
+    p.life -= p.decay;
+    if(p.y < -14 || p.life <= 0 || p.x < -14 || p.x > W + 14){
+      p.x = Math.random() * W; p.y = H * .1 + Math.random() * H * .85;
+      p.life = 1; p.vy = -(Math.random() * .28 + .03); p.vx = (Math.random() - .5) * .17;
+    }
+    const a  = p.life * .58;
+    const pg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 6);
+    pg.addColorStop(0, `hsla(${p.hue},${p.sat}%,73%,${a * .33})`);
+    pg.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = pg; ctx.beginPath(); ctx.arc(p.x, p.y, p.r * 6, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = `hsla(${p.hue},${p.sat}%,85%,${a})`;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+  });
+}
+
+/* ════════════════════════════════════════
+   TEXT REVEAL
+════════════════════════════════════════ */
+const shown = {};
+function checkText(){
+  [
+    ['ar',   T.arShow],
+    ['orn',  T.ornShow],
+    ['en',   T.enShow],
+    ['sub',  T.subShow],
+    ['hint', T.hintShow],
+  ].forEach(([id, t]) => {
+    if(!shown[id] && elapsed > t){
+      shown[id] = true;
+      document.getElementById(id).classList.add('show');
+    }
+  });
+}
+
+/* ════════════════════════════════════════
+   MAIN RENDER LOOP
+════════════════════════════════════════ */
+function render(ts){
+  if(!last) last = ts;
+  const dt  = Math.min((ts - last) / 1000, .05);
+  last = ts; elapsed += dt; auroraPhase += dt * .05;
+
+  // smooth parallax lerp
+  spx += (px - spx) * .05;
+  spy += (py - spy) * .05;
+
+  const { ctx: bg, W, H } = BG;
+
+  /* ── BACKGROUND ── */
+  const bA    = Math.min(1, Math.max(0, (elapsed - T.glowStart) / 3));
+  const bgCX  = W / 2 + spx * W * .055;
+  const bgCY  = H / 2 + spy * H * .04;
+  const bgG   = bg.createRadialGradient(bgCX, bgCY * .38, 0, bgCX, H * .5, Math.max(W, H) * .96);
+  bgG.addColorStop(0,   `rgba(14,18,50,${bA})`);
+  bgG.addColorStop(.22, `rgba(9,12,33,${bA})`);
+  bgG.addColorStop(.52, `rgba(5,7,19,${bA * .94})`);
+  bgG.addColorStop(1,   'rgba(0,0,0,1)');
+  bg.fillStyle = bgG; bg.fillRect(0, 0, W, H);
+
+  /* ── AURORA ── */
+  if(elapsed > T.auroraStart)
+    drawAurora(Math.min(1, (elapsed - T.auroraStart) / 4));
+
+  /* ── CENTER WARMTH ── */
+  if(elapsed > T.glowStart){
+    const gp = Math.min(1, (elapsed - T.glowStart) / 3.8);
+    const cg = bg.createRadialGradient(W / 2, H * .3, 0, W / 2, H * .38, Math.min(W, H) * .56);
+    cg.addColorStop(0,   `rgba(50,40,12,${gp * .28})`);
+    cg.addColorStop(.4,  `rgba(24,18,4,${gp * .11})`);
+    cg.addColorStop(1,   'rgba(0,0,0,0)');
+    bg.fillStyle = cg; bg.fillRect(0, 0, W, H);
+  }
+
+  /* ── MAIN CANVAS ── */
+  MAIN.ctx.clearRect(0, 0, MAIN.W, MAIN.H);
+  drawStars();
+
+  if(elapsed > T.mosqueStart)
+    drawMosque(Math.min(1, (elapsed - T.mosqueStart) / 5.5));
+
+  if(elapsed > T.moonStart){
+    const t = Math.min(1, (elapsed - T.moonStart) / (T.moonFull - T.moonStart));
+    drawMoon(t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2);
+  }
+
+  drawParts();
+
+  /* ── FX CANVAS ── */
+  FX.ctx.clearRect(0, 0, FX.W, FX.H);
+  drawShoots();
+
+  checkText();
+  requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
 </script>
-
 </body>
 </html>
