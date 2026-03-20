@@ -6,117 +6,131 @@
 <title>Eid Mubarak</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
-body {
-    background: black;
-    overflow: hidden;
+body{
+    height:100vh;
+    background:#000;
+    overflow:hidden;
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* Background glow */
-.bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, #0a0a2a, #000);
-    opacity: 0;
-    animation: fadeBg 3s ease forwards 1s;
+/* Smooth gradient background */
+.bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background: radial-gradient(circle at center, #0b0f2f, #000);
+    opacity:0;
+    animation:fadeIn 3s ease forwards 1s;
 }
 
-@keyframes fadeBg {
-    to { opacity: 1; }
+@keyframes fadeIn{
+    to{opacity:1}
 }
 
-/* Moon */
-.moon {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #fff 40%, #ddd 60%);
-    transform: translate(-50%, -50%) scale(0.5);
-    box-shadow: -25px 0 0 0 #000;
-    opacity: 0;
-    animation: moonReveal 3s ease forwards 2s;
+/* Moon (3D feel) */
+.moon{
+    position:absolute;
+    top:40%;
+    left:50%;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    transform:translate(-50%,-50%) scale(0.6);
+    background: radial-gradient(circle at 30% 30%, #fff, #ddd 60%, #aaa);
+    box-shadow:
+        -35px 0 0 0 #000,
+        0 0 40px rgba(255,255,200,0.6),
+        0 0 80px rgba(255,215,0,0.4);
+    opacity:0;
+    animation:moonIn 3s cubic-bezier(.25,.8,.25,1) forwards 2s;
 }
 
-@keyframes moonReveal {
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+@keyframes moonIn{
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
     }
 }
 
-/* Eid Text */
-.text {
-    position: absolute;
-    top: 55%;
-    width: 100%;
-    text-align: center;
-    font-size: 48px;
-    color: #fff;
-    letter-spacing: 3px;
-    opacity: 0;
-    transform: scale(0.8);
-    text-shadow: 
+/* Text (premium glow + depth) */
+.text{
+    position:absolute;
+    top:58%;
+    width:100%;
+    text-align:center;
+    font-size:56px;
+    letter-spacing:4px;
+    color:#fff;
+    opacity:0;
+    transform:scale(0.8);
+    text-shadow:
         0 0 10px #fff,
-        0 0 20px gold,
-        0 0 40px gold;
-    animation: textShow 3s ease forwards 3.5s;
+        0 0 25px gold,
+        0 0 60px rgba(255,215,0,0.7);
+    animation:textIn 3s ease forwards 3.5s;
 }
 
-@keyframes textShow {
-    to {
-        opacity: 1;
-        transform: scale(1);
+@keyframes textIn{
+    to{
+        opacity:1;
+        transform:scale(1);
     }
 }
 
-/* Particles */
-.particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: float 10s linear infinite;
+/* Subtle shimmer effect */
+.text::after{
+    content:"Eid Mubarak";
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    color:transparent;
+    background:linear-gradient(90deg, transparent, white, transparent);
+    -webkit-background-clip:text;
+    opacity:0;
+    animation:shine 4s ease infinite 5s;
 }
 
-@keyframes float {
-    from {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(-10vh);
-        opacity: 1;
-    }
+@keyframes shine{
+    0%{opacity:0; transform:translateX(-100%)}
+    50%{opacity:1}
+    100%{opacity:0; transform:translateX(100%)}
+}
+
+/* Floating particles */
+.particle{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    opacity:0.6;
+    animation:float linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh)}
+    to{transform:translateY(-10vh)}
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="bg"></div>
 <div class="moon"></div>
-<div class="text">Eid Mubarak ✨</div>
+<div class="text">Eid Mubarak</div>
 
 <script>
-// particles create
-for(let i = 0; i < 40; i++) {
-    let p = document.createElement("div");
-    p.className = "particle";
-    p.style.left = Math.random() * 100 + "vw";
-    p.style.animationDuration = (5 + Math.random() * 10) + "s";
-    p.style.opacity = Math.random();
+// Smooth particles
+for(let i=0;i<60;i++){
+    let p=document.createElement("div");
+    p.className="particle";
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(6+Math.random()*10)+"s";
+    p.style.opacity=Math.random();
     document.body.appendChild(p);
 }
 </script>
