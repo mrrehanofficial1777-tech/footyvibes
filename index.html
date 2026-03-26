@@ -38,7 +38,6 @@
     overflow: hidden;
   }
 
-  /* Animated background grid */
   body::before {
     content: '';
     position: fixed;
@@ -60,10 +59,8 @@
   body::after {
     content: '';
     position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
     background: radial-gradient(ellipse at 30% 20%, rgba(0,212,255,0.04) 0%, transparent 50%),
                 radial-gradient(ellipse at 70% 80%, rgba(255,215,0,0.03) 0%, transparent 50%);
     pointer-events: none;
@@ -84,7 +81,7 @@
     flex-direction: column;
   }
 
-  /* ── HEADER ── */
+  /* HEADER */
   header {
     display: flex;
     align-items: center;
@@ -154,7 +151,6 @@
     background: linear-gradient(90deg, var(--cyan), var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: none;
     line-height: 1;
   }
 
@@ -219,14 +215,14 @@
     background: rgba(0,212,255,0.05);
   }
 
-  /* ── MAIN LAYOUT ── */
+  /* MAIN LAYOUT */
   .main {
     flex: 1;
     display: flex;
     overflow: hidden;
   }
 
-  /* ── SIDEBAR ── */
+  /* SIDEBAR */
   .sidebar {
     width: 220px;
     background: rgba(11,15,24,0.8);
@@ -305,7 +301,7 @@
     font-weight: 600;
   }
 
-  /* ── CHAT AREA ── */
+  /* CHAT AREA */
   .chat-wrap {
     flex: 1;
     display: flex;
@@ -325,7 +321,7 @@
   #chat::-webkit-scrollbar-track { background: transparent; }
   #chat::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
 
-  /* ── WELCOME ── */
+  /* WELCOME */
   #welcome {
     display: flex;
     flex-direction: column;
@@ -435,7 +431,7 @@
   .cap-card .cap-title { font-size: 0.78rem; color: var(--text); font-weight: 500; }
   .cap-card .cap-sub { font-size: 0.67rem; color: var(--text2); margin-top: 3px; }
 
-  /* ── MESSAGES ── */
+  /* MESSAGES */
   .msg-wrap {
     padding: 0 30px;
     max-width: 800px;
@@ -456,7 +452,6 @@
     width: 36px; height: 36px;
     border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
     flex-shrink: 0;
     font-family: 'Orbitron', monospace;
     font-weight: 700;
@@ -521,7 +516,7 @@
     opacity: 0.4;
   }
 
-  /* Typing */
+  /* Typing indicator */
   .typing-wrap {
     display: flex; gap: 6px; align-items: center; padding: 3px 0;
   }
@@ -543,7 +538,7 @@
     30% { transform: translateY(-8px); opacity: 1; }
   }
 
-  /* ── INPUT BAR ── */
+  /* INPUT BAR */
   #input-bar {
     padding: 16px 30px 20px;
     background: rgba(7,10,15,0.9);
@@ -631,7 +626,7 @@
     font-family: 'Orbitron', monospace;
   }
 
-  /* ── FORMATTED AI ── */
+  /* FORMATTED AI CONTENT */
   .bubble.ai strong { color: var(--cyan); font-weight: 600; }
   .bubble.ai em { color: var(--gold2); font-style: italic; }
 
@@ -661,8 +656,25 @@
   .bubble.ai ul, .bubble.ai ol { padding-left: 22px; margin: 6px 0; }
   .bubble.ai li { margin: 5px 0; }
   .bubble.ai h3 { color: var(--gold); font-family: 'Orbitron', monospace; font-size: 0.9rem; margin: 12px 0 6px; letter-spacing: 0.05em; }
+  .bubble.ai p { margin: 6px 0; }
 
   .error-text { color: var(--red); font-style: italic; font-size: 0.85rem; }
+
+  /* Streaming cursor */
+  .cursor-blink {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--cyan);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: cursorBlink 0.8s step-end infinite;
+  }
+
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 
   /* Responsive */
   @media (max-width: 640px) {
@@ -722,7 +734,7 @@
       <div class="sidebar-item" onclick="sendSuggestion('Mera math solve karo')"><span class="icon">🔢</span> Math</div>
       <div class="model-tag">
         <p>Powered By</p>
-        <strong>MR7 CORE v1</strong>
+        <strong>MR7 CORE v2</strong>
       </div>
     </div>
 
@@ -878,26 +890,99 @@ function removeTyping() {
 }
 
 function formatAI(text) {
-  // Code blocks
-  text = text.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
-  // Bold
-  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  // Italic
-  text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  // Escape HTML first for safety
+  const escape = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  // Code blocks (preserve them, don't escape inside)
+  let codeBlocks = [];
+  text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, (_, lang, code) => {
+    codeBlocks.push(`<pre><code>${escape(code.trim())}</code></pre>`);
+    return `%%CODE${codeBlocks.length - 1}%%`;
+  });
+
   // Inline code
-  text = text.replace(/`(.*?)`/g, '<code>$1</code>');
-  // H3
+  text = text.replace(/`([^`]+)`/g, (_, c) => `<code>${escape(c)}</code>`);
+
+  // Bold & Italic
+  text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+  // Headings
   text = text.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+  text = text.replace(/^## (.+)$/gm, '<h3>$1</h3>');
+
+  // Numbered lists
+  text = text.replace(/^\d+\.\s(.+)$/gm, '<li>$1</li>');
+
   // Bullet lists
-  text = text.replace(/^[-•] (.+)$/gm, '<li>$1</li>');
-  text = text.replace(/(<li>[\s\S]*?<\/li>)/g, '<ul>$1</ul>');
-  // Numbered
-  text = text.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  // Paragraphs
-  text = text.replace(/\n\n/g, '<br><br>');
+  text = text.replace(/^[-•*]\s(.+)$/gm, '<li>$1</li>');
+
+  // Wrap consecutive <li> in <ul>
+  text = text.replace(/(<li>.*<\/li>\n?)+/g, m => `<ul>${m}</ul>`);
+
+  // Paragraphs: double newlines
+  text = text.replace(/\n\n+/g, '</p><p>');
   text = text.replace(/\n/g, '<br>');
+  text = `<p>${text}</p>`;
+
+  // Restore code blocks
+  codeBlocks.forEach((block, i) => {
+    text = text.replace(`%%CODE${i}%%`, block);
+  });
+
+  // Clean up empty <p> tags
+  text = text.replace(/<p><\/p>/g, '');
+  text = text.replace(/<p>(<h[123]>)/g, '$1');
+  text = text.replace(/(<\/h[123]>)<\/p>/g, '$1');
+  text = text.replace(/<p>(<ul>)/g, '$1');
+  text = text.replace(/(<\/ul>)<\/p>/g, '$1');
+  text = text.replace(/<p>(<pre>)/g, '$1');
+  text = text.replace(/(<\/pre>)<\/p>/g, '$1');
+
   return text;
 }
+
+const SYSTEM_PROMPT = `You are MR7 AI — a highly intelligent, elite AI assistant created by MR7. You are like Claude and ChatGPT combined — powerful, accurate, and always helpful.
+
+IDENTITY: You are MR7 AI. If anyone asks who made you, say "I am MR7 AI, created by MR7." Never say you are Claude or ChatGPT.
+
+LANGUAGE RULE: Always respond in the SAME language the user writes in.
+- If user writes in Hindi → reply in Hindi
+- If user writes in Hinglish → reply in Hinglish  
+- If user writes in English → reply in English
+- Mix naturally if user mixes languages
+
+CAPABILITIES — You can help with EVERYTHING:
+- Coding & debugging (Python, JS, C++, Java, HTML, CSS, etc.)
+- Mathematics (basic to advanced calculus, algebra, statistics)
+- Science (physics, chemistry, biology)
+- Writing (essays, emails, stories, poems, scripts, resumes)
+- Business plans, marketing strategies, startup advice
+- Career guidance, interview preparation, job tips
+- Health, nutrition, fitness plans
+- Education, study plans, exam tips
+- General knowledge, history, geography, current events
+- Creative brainstorming, ideas, innovation
+- Personal advice, mental wellbeing, motivation
+- Legal & financial general information
+- Translation between any languages
+- Recipes, cooking tips
+- Travel planning
+- Anything else a user needs!
+
+STYLE RULES:
+- Be direct, clear, and well-structured
+- Use **bold** for key terms and headings
+- Use bullet points and numbered lists when helpful
+- Show code in proper code blocks with language specified
+- Be warm, confident, and encouraging
+- Break complex topics into simple steps
+- Give complete, detailed answers — don't cut short
+- NEVER say "I can't help with that" — always find a way to assist
+- Add examples when explaining concepts
+
+You are MR7 AI. Smart. Fast. Always helpful. No problem is too big or too small.`;
 
 async function sendMessage() {
   const text = inputEl.value.trim();
@@ -914,57 +999,36 @@ async function sendMessage() {
   showTyping();
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: `You are MR7 AI — an elite, highly intelligent AI assistant. Your personality is confident, precise, and helpful.
-
-LANGUAGE: Respond in the SAME language the user writes in. If they write Hindi or Hinglish, reply in Hindi/Hinglish. If they write English, reply in English.
-
-CAPABILITIES: You can help with absolutely anything:
-- Coding & debugging (all languages)
-- Math & science problems
-- Writing (essays, emails, stories, poems, scripts)
-- Business plans & strategy
-- Career guidance & interview prep
-- Health, nutrition & fitness
-- Education & study plans
-- Legal & financial general info
-- Creative brainstorming
-- Personal advice & mental wellbeing
-- General knowledge & research
-
-STYLE:
-- Be direct and structured
-- Use bullet points for lists
-- Use **bold** for important terms
-- Show code in proper code blocks
-- Be warm but professional
-- Never refuse — always find a way to help
-- For complex topics, break into clear steps
-
-You are MR7 AI. You solve problems. No problem is too big or too small.`,
+        max_tokens: 2000,
+        system: SYSTEM_PROMPT,
         messages: history
       })
     });
 
-    const data = await res.json();
+    const data = await response.json();
     removeTyping();
 
-    if (data.content && data.content[0]) {
+    if (data.content && data.content[0] && data.content[0].text) {
       const reply = data.content[0].text;
       history.push({ role: 'assistant', content: reply });
       addMsg('ai', formatAI(reply));
     } else if (data.error) {
-      addMsg('ai', `<span class="error-text">⚠ System Error: ${data.error.message}</span>`);
+      const errMsg = data.error.message || 'Unknown error';
+      addMsg('ai', `<span class="error-text">⚠ Error: ${errMsg}</span>`);
+    } else {
+      addMsg('ai', `<span class="error-text">⚠ Unexpected response. Please try again.</span>`);
     }
 
   } catch (err) {
     removeTyping();
-    addMsg('ai', `<span class="error-text">⚠ Connection failed. Please check your network and try again.</span>`);
+    addMsg('ai', `<span class="error-text">⚠ Connection failed. Network error: ${err.message}</span>`);
   }
 
   busy = false;
